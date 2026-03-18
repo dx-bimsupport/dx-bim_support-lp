@@ -180,14 +180,14 @@
     color: var(--text-muted);
     text-decoration: line-through;
     display: block;
-    margin-bottom: -15px; /* 下の割引価格との間隔を詰める */
+    margin-bottom: -15px;
     margin-top: 10px;
   }
 
   .price {
     font-size: 36px;
     font-weight: 800;
-    color: var(--accent-color); /* 割引価格を赤色で強調 */
+    color: var(--accent-color);
     margin: 20px 0;
   }
 
@@ -276,6 +276,12 @@
     font-size: 14px;
     color: var(--text-muted);
     border-top: 1px solid var(--border-color);
+  }
+  
+  .footer-operator {
+    font-weight: bold;
+    margin-bottom: 12px;
+    color: var(--text-main);
   }
 </style>
 </head>
@@ -371,7 +377,8 @@
 </section>
 
 <footer>
-  © 2026 AsyncBIM. All rights reserved.
+  <div class="footer-operator">運営: AVIZ</div>
+  <div>© 2026 AsyncBIM. All rights reserved.</div>
 </footer>
 
 <div class="floating">
