@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AsyncBIM | 次世代のBIM・DXサポート</title>
+<title>AsyncBIM | 次世代のBIM技術サポート</title>
 <style>
   :root {
     --primary-color: #2563eb;
@@ -13,7 +13,7 @@
     --text-muted: #64748b;
     --card-bg: #ffffff;
     --border-color: #e2e8f0;
-    --accent-color: #ef4444; /* キャンペーン用の赤色 */
+    --accent-color: #ef4444; 
   }
 
   body {
@@ -119,13 +119,32 @@
     color: var(--primary-color);
   }
 
-  .card ul {
-    padding-left: 20px;
-    color: var(--text-muted);
+  /* 課題セクション用のデザイン */
+  .pain-points {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    margin-top: 30px;
   }
 
-  .card ul li {
-    margin-bottom: 10px;
+  .pain-point-item {
+    background: var(--bg-color);
+    border-left: 4px solid var(--primary-color);
+    padding: 20px;
+    border-radius: 0 8px 8px 0;
+    font-weight: bold;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    color: var(--text-main);
+  }
+
+  .pain-point-item svg {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    color: var(--text-muted);
+    margin-top: 2px;
   }
 
   /* 料金プラン */
@@ -195,6 +214,26 @@
     font-size: 16px;
     color: var(--text-muted);
     font-weight: normal;
+  }
+
+  .plan-box ul {
+    text-align: left;
+    list-style: none;
+    padding: 0;
+    color: var(--text-muted);
+  }
+
+  .plan-box ul li {
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .plan-box ul li::before {
+    content: "✓";
+    color: var(--primary-color);
+    font-weight: bold;
   }
 
   /* 追従ボタン */
@@ -288,26 +327,40 @@
 <body>
 
 <header>
-  <div class="badge">Next-Gen BIM Support</div>
+  <div class="badge">BIM Technical Helpdesk</div>
   <h1>AsyncBIM</h1>
   <p class="subtitle">
-    RevitやACCの運用から、Python/Dynamoを活用した自動化まで。<br>
-    あなたのBIMプロジェクトに、頼れる専門家をチャットで。
+    Revitの操作、エラー解決、Dynamo/Pythonスクリプトのデバッグまで。<br>
+    BIMの技術的な壁を、チャットでスピーディに突破します。
   </p>
   <a class="btn" href="https://forms.gle/ohT4uDPEGPSiJmTw5" target="_blank">無料相談を始める</a>
 </header>
 
 <section>
-  <h2 class="section-title">BIM運用の壁、感じていませんか？</h2>
+  <h2 class="section-title">実務でこんな技術的な壁、ありませんか？</h2>
   <div class="card">
-    <p>BIMを導入したものの、実務レベルでの運用には多くの課題が伴います。</p>
-    <ul>
-      <li>Revitの複雑なモデリングやファミリ作成でつまずいている</li>
-      <li>Autodesk Construction Cloud (ACC) の最適な運用ルールが定まらない</li>
-      <li>DynamoやPythonを活用して業務を効率化したいが、コードが書けない</li>
-      <li>IFC連携やAutoCADとのデータ互換でエラーが発生する</li>
-      <li>高額なコンサルタントを雇うほどではないが、気軽にプロへ質問したい</li>
-    </ul>
+    <p style="text-align:center; color:var(--text-muted); margin-bottom: 30px;">
+      自己解決に何時間もかかってしまう技術的な課題を、プロが代わりに検証・回答します。
+    </p>
+    
+    <div class="pain-points">
+      <div class="pain-point-item">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+        Revitの複雑なモデリングやファミリ作成でエラーが出る
+      </div>
+      <div class="pain-point-item">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+        DynamoやPythonのスクリプトで原因不明のエラーが消えない
+      </div>
+      <div class="pain-point-item">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"></path></svg>
+        IFC連携やAutoCADとのデータ互換で情報が欠落する
+      </div>
+      <div class="pain-point-item">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+        ACCの機能設定やデータアクセス権限の仕様が分からない
+      </div>
+    </div>
   </div>
 </section>
 
@@ -316,11 +369,11 @@
   <div class="grid-2">
     <div class="card">
       <h3>非同期チャットサポート</h3>
-      <p>時間を合わせる必要はありません。質問をテキストで投げておくだけで、実務経験豊富なプロが24時間以内に的確な回答を返信します。</p>
+      <p>操作手順の確認からエラーコードの解読まで、技術的な質問をテキストで投げておくだけで、実務経験豊富なプロが24時間以内に回答します。</p>
     </div>
     <div class="card">
-      <h3>幅広い技術スタック</h3>
-      <p>Revitの基本操作から、ACCのプロジェクト管理、Dynamo/Pythonスクリプトのデバッグ、Google Sheets連携によるデータ抽出まで幅広く対応します。</p>
+      <h3>対応可能な技術領域</h3>
+      <p>Revitの基本・応用操作、ファミリ作成、ACCの機能設定、Dynamo/Pythonスクリプトのデバッグ、Google Sheetsを活用したデータ抽出などに対応します。</p>
     </div>
   </div>
 </section>
@@ -338,9 +391,9 @@
       <span class="original-price">通常 ¥10,000</span>
       <div class="price">¥5,000<span> / 月</span></div>
       <p style="color:var(--text-muted); margin-bottom:20px;">まずは試してみたい方へ</p>
-      <ul style="text-align:left; list-style:none; padding:0;">
-        <li>✓ 月3件までの質問</li>
-        <li>✓ 24時間以内の返信</li>
+      <ul>
+        <li>月3件までの技術質問</li>
+        <li>24時間以内の返信</li>
       </ul>
     </div>
 
@@ -349,11 +402,11 @@
       <h3>Standard</h3>
       <span class="original-price">通常 ¥30,000</span>
       <div class="price">¥15,000<span> / 月</span></div>
-      <p style="color:var(--text-muted); margin-bottom:20px;">本格的に運用を改善したい方へ</p>
-      <ul style="text-align:left; list-style:none; padding:0;">
-        <li>✓ 月10件までの質問</li>
-        <li>✓ 優先的な返信対応</li>
-        <li>✓ スクリプトレビュー対応</li>
+      <p style="color:var(--text-muted); margin-bottom:20px;">日常的なエラー解決に</p>
+      <ul>
+        <li>月10件までの技術質問</li>
+        <li>優先的な返信対応</li>
+        <li>短いスクリプトのコードレビュー</li>
       </ul>
     </div>
 
@@ -361,17 +414,17 @@
       <h3>Pro</h3>
       <span class="original-price">通常 ¥60,000</span>
       <div class="price">¥30,000<span> / 月</span></div>
-      <p style="color:var(--text-muted); margin-bottom:20px;">チーム全体のBIMハブとして</p>
-      <ul style="text-align:left; list-style:none; padding:0;">
-        <li>✓ 質問無制限</li>
-        <li>✓ 複雑なワークフロー構築相談</li>
+      <p style="color:var(--text-muted); margin-bottom:20px;">チームの技術ハブとして</p>
+      <ul>
+        <li>技術質問 無制限</li>
+        <li>高度なAPI/スクリプト技術相談</li>
       </ul>
     </div>
   </div>
 </section>
 
 <section style="text-align:center">
-  <h2 class="section-title">まずは課題をお聞かせください</h2>
+  <h2 class="section-title">まずは技術的な課題をお聞かせください</h2>
   <a class="btn" href="https://forms.gle/ohT4uDPEGPSiJmTw5" target="_blank">お問い合わせフォームへ</a>
   <p style="margin-top:20px; color:var(--text-muted);">✉️ dx.bim.support@gmail.com</p>
 </section>
@@ -389,10 +442,10 @@
 
 <div class="toast" id="toast">
   <div class="toast-header">
-    <strong>BIMの疑問、解決します</strong>
+    <strong>BIMの技術的疑問、解決します</strong>
     <button class="close-btn" onclick="closeToast()">×</button>
   </div>
-  <p>RevitやACC、自動化に関する質問を非同期でプロに相談できます。</p>
+  <p>Revit操作やDynamoエラーなど、技術的な質問を非同期で相談できます。</p>
   <a class="btn" style="padding: 8px 16px; font-size: 14px; width: 100%; box-sizing: border-box; text-align: center;" href="https://forms.gle/ohT4uDPEGPSiJmTw5" target="_blank">お問合せ</a>
 </div>
 
