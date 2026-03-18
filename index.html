@@ -2,309 +2,373 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>BIMサポート | Revit・ACC技術支援</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AsyncBIM | 次世代のBIM・DXサポート</title>
 <style>
+  :root {
+    --primary-color: #2563eb;
+    --primary-hover: #1d4ed8;
+    --bg-color: #f8fafc;
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+    --card-bg: #ffffff;
+    --border-color: #e2e8f0;
+  }
 
-body{
-margin:0;
-font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;
-background:#f7f9fc;
-color:#333;
-line-height:1.7;
-}
+  body {
+    font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+    margin: 0;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    line-height: 1.6;
+    letter-spacing: 0.05em;
+  }
 
-/* ===== ヘッダー ===== */
+  /* ヘッダー・ヒーローセクション */
+  header {
+    padding: 100px 20px;
+    text-align: center;
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    color: white;
+  }
 
-.hero{
-background:linear-gradient(120deg,#eef5ff,#ffffff);
-text-align:center;
-padding:120px 20px;
-position:relative;
-overflow:hidden;
-}
+  .badge {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.1);
+    color: #93c5fd;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    backdrop-filter: blur(4px);
+  }
 
-.hero:after{
-content:"";
-position:absolute;
-bottom:0;
-left:0;
-width:100%;
-height:4px;
-background:linear-gradient(90deg,#ff3b30,#ff7a18,#ff3b30);
-}
+  h1 {
+    font-size: 42px;
+    margin: 0 0 16px 0;
+    font-weight: 800;
+  }
 
-.hero h1{
-font-size:40px;
-margin-bottom:20px;
-animation:fadeUp 1s ease;
-}
+  .subtitle {
+    font-size: 18px;
+    color: #cbd5e1;
+    max-width: 600px;
+    margin: 0 auto 40px auto;
+  }
 
-.hero p{
-font-size:20px;
-color:#555;
-animation:fadeUp 1.3s ease;
-}
+  /* ボタン共通スタイル */
+  .btn {
+    display: inline-block;
+    background: var(--primary-color);
+    color: white;
+    padding: 16px 32px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.3);
+  }
 
-/* CTA */
+  .btn:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.4);
+  }
 
-.cta{
-margin-top:40px;
-animation:fadeUp 1.6s ease;
-}
+  /* セクション共通 */
+  section {
+    padding: 80px 20px;
+    max-width: 1000px;
+    margin: auto;
+  }
 
-.cta a{
-background:linear-gradient(120deg,#ff3b30,#ff7a18);
-padding:18px 36px;
-border-radius:40px;
-font-size:20px;
-color:white;
-text-decoration:none;
-font-weight:bold;
-box-shadow:0 10px 25px rgba(0,0,0,0.1);
-transition:all .25s cubic-bezier(.22,.61,.36,1);
-}
+  .section-title {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 50px;
+    color: var(--text-main);
+  }
 
-.cta a:hover{
-transform:translateY(-4px) scale(1.03);
-box-shadow:0 16px 32px rgba(0,0,0,0.15);
-}
+  /* カードレイアウト */
+  .grid-2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+  }
 
-/* ===== セクション ===== */
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 40px;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
 
-.section{
-max-width:1000px;
-margin:40px auto;
-background:white;
-border-radius:20px;
-padding:45px;
-box-shadow:0 10px 30px rgba(0,0,0,0.06);
-position:relative;
-animation:fadeUp 1s ease;
-}
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+  }
 
-.section:before{
-content:"";
-position:absolute;
-top:0;
-left:0;
-width:100%;
-height:3px;
-background:linear-gradient(90deg,#ff3b30,#ff7a18);
-border-radius:20px 20px 0 0;
-}
+  .card h3 {
+    margin-top: 0;
+    font-size: 20px;
+    color: var(--primary-color);
+  }
 
-/* ===== カード ===== */
+  .card ul {
+    padding-left: 20px;
+    color: var(--text-muted);
+  }
 
-.features{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-gap:20px;
-margin-top:25px;
-}
+  .card ul li {
+    margin-bottom: 10px;
+  }
 
-.card{
-background:#fafbff;
-padding:24px;
-border-radius:16px;
-border:1px solid #eef1f7;
-transition:all .25s cubic-bezier(.22,.61,.36,1);
-}
+  /* 料金プラン */
+  .plan-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
 
-.card:hover{
-transform:translateY(-6px);
-box-shadow:0 12px 24px rgba(0,0,0,0.1);
-}
+  .plan-box {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 40px 30px;
+    text-align: center;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+    position: relative;
+  }
 
-/* ===== お問い合わせ ===== */
+  .plan-box.popular {
+    border: 2px solid var(--primary-color);
+    transform: scale(1.02);
+  }
 
-.contact{
-text-align:center;
-margin-top:25px;
-}
+  .popular-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--primary-color);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+  }
 
-.contact a{
-background:#ff3b30;
-color:white;
-padding:16px 30px;
-border-radius:30px;
-text-decoration:none;
-font-size:18px;
-transition:.25s;
-}
+  .price {
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--text-main);
+    margin: 20px 0;
+  }
 
-.contact a:hover{
-background:#e33128;
-transform:translateY(-3px);
-}
+  .price span {
+    font-size: 16px;
+    color: var(--text-muted);
+    font-weight: normal;
+  }
 
-/* ===== フッター ===== */
+  /* 追従ボタン */
+  .floating {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    z-index: 100;
+  }
 
-footer{
-text-align:center;
-padding:40px;
-color:#777;
-}
+  .floating a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 50%;
+    text-decoration: none;
+    box-shadow: 0 10px 25px rgba(37, 99, 235, 0.5);
+    transition: transform 0.3s;
+    font-size: 24px;
+  }
 
-/* ===== スクロール追従ボタン ===== */
+  .floating a:hover {
+    transform: scale(1.1);
+  }
 
-.floating-cta{
+  /* トースト型ポップアップ */
+  .toast {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    background: var(--card-bg);
+    border-left: 4px solid var(--primary-color);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    display: none;
+    z-index: 200;
+    max-width: 320px;
+    animation: slideIn 0.5s ease-out forwards;
+  }
 
-position:fixed;
-bottom:25px;
-right:25px;
+  @keyframes slideIn {
+    from { transform: translateX(-100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+  }
 
-background:linear-gradient(120deg,#ff3b30,#ff7a18);
-color:white;
+  .toast p {
+    margin: 0 0 15px 0;
+    font-size: 14px;
+    color: var(--text-muted);
+  }
 
-padding:16px 24px;
+  .toast-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
 
-border-radius:40px;
+  .toast-header strong {
+    font-size: 16px;
+  }
 
-font-weight:bold;
+  .close-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #94a3b8;
+    cursor: pointer;
+  }
 
-text-decoration:none;
-
-box-shadow:0 10px 25px rgba(0,0,0,0.2);
-
-transition:all .25s cubic-bezier(.22,.61,.36,1);
-
-z-index:999;
-
-}
-
-.floating-cta:hover{
-
-transform:translateY(-4px) scale(1.05);
-
-box-shadow:0 18px 35px rgba(0,0,0,0.25);
-
-}
-
-/* ===== アニメーション ===== */
-
-@keyframes fadeUp{
-
-from{
-opacity:0;
-transform:translateY(30px);
-}
-
-to{
-opacity:1;
-transform:translateY(0);
-}
-
-}
-
+  footer {
+    text-align: center;
+    padding: 40px;
+    font-size: 14px;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border-color);
+  }
 </style>
 </head>
-
 <body>
 
-<section class="hero">
+<header>
+  <div class="badge">Next-Gen BIM Support</div>
+  <h1>AsyncBIM</h1>
+  <p class="subtitle">
+    RevitやACCの運用から、Python/Dynamoを活用した自動化まで。<br>
+    あなたのBIMプロジェクトに、頼れる専門家をチャットで。
+  </p>
+  <a class="btn" href="https://forms.gle/ohT4uDPEGPSiJmTw5" target="_blank">無料相談を始める</a>
+</header>
 
-<h1>BIMの「困った」を<br>すぐ相談できる技術サポート</h1>
-
-<p>
-BIM導入・Revit運用で困ったとき<br>
-すぐ相談できる外部BIMサポート
-</p>
-
-<div class="cta">
-<a href="https://forms.gle/ohT4uDPEGPSiJmTw5" target="_blank" rel="noopener">
-無料相談する
-</a>
-</div>
-
+<section>
+  <h2 class="section-title">BIM運用の壁、感じていませんか？</h2>
+  <div class="card">
+    <p>BIMを導入したものの、実務レベルでの運用には多くの課題が伴います。</p>
+    <ul>
+      <li>Revitの複雑なモデリングやファミリ作成でつまずいている</li>
+      <li>Autodesk Construction Cloud (ACC) の最適な運用ルールが定まらない</li>
+      <li>DynamoやPythonを活用して業務を効率化したいが、コードが書けない</li>
+      <li>IFC連携やAutoCADとのデータ互換でエラーが発生する</li>
+      <li>高額なコンサルタントを雇うほどではないが、気軽にプロへ質問したい</li>
+    </ul>
+  </div>
 </section>
 
+<section>
+  <h2 class="section-title">What We Offer</h2>
+  <div class="grid-2">
+    <div class="card">
+      <h3>非同期チャットサポート</h3>
+      <p>時間を合わせる必要はありません。質問をテキストで投げておくだけで、実務経験豊富なプロが24時間以内に的確な回答を返信します。</p>
+    </div>
+    <div class="card">
+      <h3>幅広い技術スタック</h3>
+      <p>Revitの基本操作から、ACCのプロジェクト管理、Dynamo/Pythonスクリプトのデバッグ、Google Sheets連携によるデータ抽出まで幅広く対応します。</p>
+    </div>
+  </div>
+</section>
 
-<div class="section">
+<section>
+  <h2 class="section-title">Simple Pricing</h2>
+  <div class="plan-grid">
+    <div class="plan-box">
+      <h3>Lite</h3>
+      <div class="price">¥5,000<span> / 月</span></div>
+      <p style="color:var(--text-muted); margin-bottom:20px;">まずは試してみたい方へ</p>
+      <ul style="text-align:left; list-style:none; padding:0;">
+        <li>✓ 月3件までの質問</li>
+        <li>✓ 24時間以内の返信</li>
+      </ul>
+    </div>
 
-<h2>BIMでこんな問題ありませんか？</h2>
+    <div class="plan-box popular">
+      <div class="popular-badge">一番人気</div>
+      <h3>Standard</h3>
+      <div class="price">¥15,000<span> / 月</span></div>
+      <p style="color:var(--text-muted); margin-bottom:20px;">本格的に運用を改善したい方へ</p>
+      <ul style="text-align:left; list-style:none; padding:0;">
+        <li>✓ 月10件までの質問</li>
+        <li>✓ 優先的な返信対応</li>
+        <li>✓ スクリプトレビュー対応</li>
+      </ul>
+    </div>
 
-<ul>
+    <div class="plan-box">
+      <h3>Pro</h3>
+      <div class="price">¥30,000<span> / 月</span></div>
+      <p style="color:var(--text-muted); margin-bottom:20px;">チーム全体のBIMハブとして</p>
+      <ul style="text-align:left; list-style:none; padding:0;">
+        <li>✓ 質問無制限</li>
+        <li>✓ 複雑なワークフロー構築相談</li>
+      </ul>
+    </div>
+  </div>
+</section>
 
-<li>Revit操作がわからず作業が止まる</li>
-<li>ACCの運用ルールが決まっていない</li>
-<li>BIM導入したが現場で活用できていない</li>
-<li>モデル作成ルールがバラバラ</li>
-<li>社内に相談できる人がいない</li>
-
-</ul>
-
-</div>
-
-
-<div class="section">
-
-<h2>サポート内容</h2>
-
-<div class="features">
-
-<div class="card">
-<h3>Revitサポート</h3>
-<p>モデリング・ファミリ作成・テンプレート整備</p>
-</div>
-
-<div class="card">
-<h3>ACC運用支援</h3>
-<p>CDE構築・デザインコラボ・ワークフロー整理</p>
-</div>
-
-<div class="card">
-<h3>BIM導入支援</h3>
-<p>社内ルール作成・テンプレート整備・教育</p>
-</div>
-
-<div class="card">
-<h3>BIMトラブル対応</h3>
-<p>技術トラブルの調査・解決</p>
-</div>
-
-</div>
-
-</div>
-
-
-<div class="section">
-
-<h2>お問い合わせ</h2>
-
-<div class="contact">
-
-<p>
-メール：dx.bim.support@gmail.com
-</p>
-
-<a href="https://forms.gle/ohT4uDPEGPSiJmTw5" target="_blank" rel="noopener">
-お問い合わせフォーム
-</a>
-
-</div>
-
-</div>
+<section style="text-align:center">
+  <h2 class="section-title">まずは課題をお聞かせください</h2>
+  <a class="btn" href="https://forms.gle/ohT4uDPEGPSiJmTw5" target="_blank">お問い合わせフォームへ</a>
+  <p style="margin-top:20px; color:var(--text-muted);">✉️ dx.bim.support@gmail.com</p>
+</section>
 
 <footer>
-
-© BIM Support
-
+  © 2026 AsyncBIM. All rights reserved.
 </footer>
 
+<div class="floating">
+  <a href="https://forms.gle/ohT4uDPEGPSiJmTw5" target="_blank" title="相談する">
+    💬
+  </a>
+</div>
 
-<!-- スクロール追従ボタン -->
+<div class="toast" id="toast">
+  <div class="toast-header">
+    <strong>BIMの疑問、解決します</strong>
+    <button class="close-btn" onclick="closeToast()">×</button>
+  </div>
+  <p>RevitやACC、自動化に関する質問を非同期でプロに相談できます。</p>
+  <a class="btn" style="padding: 8px 16px; font-size: 14px; width: 100%; box-sizing: border-box; text-align: center;" href="https://forms.gle/ohT4uDPEGPSiJmTw5" target="_blank">詳細を見る</a>
+</div>
 
-<a class="floating-cta"
-href="https://forms.gle/ohT4uDPEGPSiJmTw5"
-target="_blank"
-rel="noopener">
+<script>
+  // 3秒後に画面左下にトースト通知を表示
+  setTimeout(function(){
+    document.getElementById("toast").style.display = "block";
+  }, 3000);
 
-無料相談
-
-</a>
-
+  function closeToast(){
+    document.getElementById("toast").style.display = "none";
+  }
+</script>
 
 </body>
 </html>
