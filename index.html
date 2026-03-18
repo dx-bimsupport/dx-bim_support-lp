@@ -2,336 +2,310 @@
 <html lang="ja">
 <head>
   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-YDB4VWMRW1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-YDB4VWMRW1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
-  gtag('config', 'G-YDB4VWMRW1');
-</script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AsyncBIM | 次世代のBIM技術サポート</title>
-<style>
-  :root {
-    --primary-color: #2563eb;
-    --primary-hover: #1d4ed8;
-    --bg-color: #f8fafc;
-    --text-main: #1e293b;
-    --text-muted: #64748b;
-    --card-bg: #ffffff;
-    --border-color: #e2e8f0;
-    --accent-color: #ef4444; 
-  }
+    gtag('config', 'G-YDB4VWMRW1');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AsyncBIM | 次世代のBIM技術アドバイザリー</title>
+  <style>
+    :root {
+      --primary-color: #2563eb;
+      --primary-hover: #1d4ed8;
+      --bg-color: #f8fafc;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --card-bg: #ffffff;
+      --border-color: #e2e8f0;
+      --accent-color: #ef4444; 
+      --slack-color: #4A154B;
+      --notion-color: #000000;
+    }
 
-  body {
-    font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
-    margin: 0;
-    background-color: var(--bg-color);
-    color: var(--text-main);
-    line-height: 1.6;
-    letter-spacing: 0.05em;
-  }
+    body {
+      font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+      margin: 0;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      line-height: 1.6;
+      letter-spacing: 0.05em;
+    }
 
-  /* ヘッダー・ヒーローセクション */
-  header {
-    padding: 100px 20px;
-    text-align: center;
-    background: linear-gradient(135deg, #0f172a, #1e293b);
-    color: white;
-  }
+    header {
+      padding: 100px 20px;
+      text-align: center;
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      color: white;
+    }
 
-  .badge {
-    display: inline-block;
-    background: rgba(255, 255, 255, 0.1);
-    color: #93c5fd;
-    padding: 6px 16px;
-    border-radius: 20px;
-    font-size: 14px;
-    font-weight: bold;
-    margin-bottom: 20px;
-    backdrop-filter: blur(4px);
-  }
+    .badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.1);
+      color: #93c5fd;
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      backdrop-filter: blur(4px);
+    }
 
-  h1 {
-    font-size: 42px;
-    margin: 0 0 16px 0;
-    font-weight: 800;
-  }
+    h1 {
+      font-size: 42px;
+      margin: 0 0 16px 0;
+      font-weight: 800;
+    }
 
-  .subtitle {
-    font-size: 18px;
-    color: #cbd5e1;
-    max-width: 600px;
-    margin: 0 auto 40px auto;
-  }
+    .subtitle {
+      font-size: 18px;
+      color: #cbd5e1;
+      max-width: 600px;
+      margin: 0 auto 40px auto;
+    }
 
-  /* ボタン共通スタイル */
-  .btn {
-    display: inline-block;
-    background: var(--primary-color);
-    color: white;
-    padding: 16px 32px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.3);
-  }
+    .btn {
+      display: inline-block;
+      background: var(--primary-color);
+      color: white;
+      padding: 16px 32px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.3);
+    }
 
-  .btn:hover {
-    background: var(--primary-hover);
-    transform: translateY(-2px);
-    box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.4);
-  }
+    .btn:hover {
+      background: var(--primary-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.4);
+    }
 
-  /* セクション共通 */
-  section {
-    padding: 80px 20px;
-    max-width: 1000px;
-    margin: auto;
-  }
+    section {
+      padding: 80px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
 
-  .section-title {
-    text-align: center;
-    font-size: 28px;
-    font-weight: 700;
-    margin-bottom: 50px;
-    color: var(--text-main);
-  }
+    .section-title {
+      text-align: center;
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 50px;
+      color: var(--text-main);
+    }
 
-  /* カードレイアウト */
-  .grid-2 {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-  }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
 
-  .card {
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-    padding: 40px;
-    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 40px;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
 
-  .card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
-  }
+    .tool-tag {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: bold;
+      color: white;
+      margin-bottom: 8px;
+    }
+    .tag-slack { background-color: var(--slack-color); }
+    .tag-notion { background-color: var(--notion-color); }
 
-  .card h3 {
-    margin-top: 0;
-    font-size: 20px;
-    color: var(--primary-color);
-  }
+    .pain-points {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin-top: 30px;
+    }
 
-  /* 課題セクション用のデザイン */
-  .pain-points {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 16px;
-    margin-top: 30px;
-  }
+    .pain-point-item {
+      background: var(--bg-color);
+      border-left: 4px solid var(--primary-color);
+      padding: 20px;
+      border-radius: 0 8px 8px 0;
+      font-weight: bold;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      color: var(--text-main);
+    }
 
-  .pain-point-item {
-    background: var(--bg-color);
-    border-left: 4px solid var(--primary-color);
-    padding: 20px;
-    border-radius: 0 8px 8px 0;
-    font-weight: bold;
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    color: var(--text-main);
-  }
+    .example-box {
+      background: white;
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 30px;
+      margin-bottom: 24px;
+    }
+    .example-q {
+      display: flex;
+      gap: 12px;
+      font-weight: bold;
+      color: var(--primary-color);
+      margin-bottom: 12px;
+    }
+    .example-a {
+      display: flex;
+      gap: 12px;
+      color: var(--text-main);
+      padding-left: 28px;
+      font-size: 15px;
+    }
 
-  .pain-point-item svg {
-    flex-shrink: 0;
-    width: 24px;
-    height: 24px;
-    color: var(--text-muted);
-    margin-top: 2px;
-  }
+    .campaign-banner {
+      background: linear-gradient(90deg, #ef4444, #f97316);
+      color: white;
+      text-align: center;
+      padding: 12px 20px;
+      border-radius: 8px;
+      margin-bottom: 40px;
+      font-weight: bold;
+      font-size: 16px;
+      box-shadow: 0 4px 6px -1px rgba(239, 68, 68, 0.3);
+    }
 
-  /* 料金プラン */
-  .campaign-banner {
-    background: linear-gradient(90deg, #ef4444, #f97316);
-    color: white;
-    text-align: center;
-    padding: 12px 20px;
-    border-radius: 8px;
-    margin-bottom: 40px;
-    font-weight: bold;
-    font-size: 16px;
-    box-shadow: 0 4px 6px -1px rgba(239, 68, 68, 0.3);
-  }
+    .plan-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
 
-  .plan-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
-  }
+    .plan-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 40px 30px;
+      text-align: center;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+      position: relative;
+    }
 
-  .plan-box {
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-    padding: 40px 30px;
-    text-align: center;
-    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
-    position: relative;
-  }
+    .plan-box.popular {
+      border: 2px solid var(--primary-color);
+      transform: scale(1.02);
+    }
 
-  .plan-box.popular {
-    border: 2px solid var(--primary-color);
-    transform: scale(1.02);
-  }
+    .popular-badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--primary-color);
+      color: white;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: bold;
+    }
 
-  .popular-badge {
-    position: absolute;
-    top: -12px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--primary-color);
-    color: white;
-    padding: 4px 12px;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: bold;
-  }
+    .original-price {
+      font-size: 16px;
+      color: var(--text-muted);
+      text-decoration: line-through;
+      display: block;
+      margin-bottom: -15px;
+      margin-top: 10px;
+    }
 
-  .original-price {
-    font-size: 16px;
-    color: var(--text-muted);
-    text-decoration: line-through;
-    display: block;
-    margin-bottom: -15px;
-    margin-top: 10px;
-  }
+    .price {
+      font-size: 36px;
+      font-weight: 800;
+      color: var(--accent-color);
+      margin: 20px 0;
+    }
 
-  .price {
-    font-size: 36px;
-    font-weight: 800;
-    color: var(--accent-color);
-    margin: 20px 0;
-  }
+    .price span {
+      font-size: 16px;
+      color: var(--text-muted);
+      font-weight: normal;
+    }
 
-  .price span {
-    font-size: 16px;
-    color: var(--text-muted);
-    font-weight: normal;
-  }
+    .plan-box ul {
+      text-align: left;
+      list-style: none;
+      padding: 0;
+      color: var(--text-muted);
+    }
 
-  .plan-box ul {
-    text-align: left;
-    list-style: none;
-    padding: 0;
-    color: var(--text-muted);
-  }
+    .plan-box ul li {
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
 
-  .plan-box ul li {
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
+    .plan-box ul li::before {
+      content: "✓";
+      color: var(--primary-color);
+      font-weight: bold;
+    }
 
-  .plan-box ul li::before {
-    content: "✓";
-    color: var(--primary-color);
-    font-weight: bold;
-  }
+    .floating {
+      position: fixed;
+      right: 30px;
+      bottom: 30px;
+      z-index: 100;
+    }
 
-  /* 追従ボタン */
-  .floating {
-    position: fixed;
-    right: 30px;
-    bottom: 30px;
-    z-index: 100;
-  }
+    .floating a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 60px;
+      height: 60px;
+      background: var(--primary-color);
+      color: white;
+      border-radius: 50%;
+      text-decoration: none;
+      box-shadow: 0 10px 25px rgba(37, 99, 235, 0.5);
+      transition: transform 0.3s;
+      font-size: 24px;
+    }
 
-  .floating a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 60px;
-    height: 60px;
-    background: var(--primary-color);
-    color: white;
-    border-radius: 50%;
-    text-decoration: none;
-    box-shadow: 0 10px 25px rgba(37, 99, 235, 0.5);
-    transition: transform 0.3s;
-    font-size: 24px;
-  }
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      left: 30px;
+      background: var(--card-bg);
+      border-left: 4px solid var(--primary-color);
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      display: none;
+      z-index: 200;
+      max-width: 320px;
+      animation: slideIn 0.5s ease-out forwards;
+    }
 
-  .floating a:hover {
-    transform: scale(1.1);
-  }
+    @keyframes slideIn {
+      from { transform: translateX(-100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
 
-  /* トースト型ポップアップ */
-  .toast {
-    position: fixed;
-    bottom: 30px;
-    left: 30px;
-    background: var(--card-bg);
-    border-left: 4px solid var(--primary-color);
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    display: none;
-    z-index: 200;
-    max-width: 320px;
-    animation: slideIn 0.5s ease-out forwards;
-  }
-
-  @keyframes slideIn {
-    from { transform: translateX(-100%); opacity: 0; }
-    to { transform: translateX(0); opacity: 1; }
-  }
-
-  .toast p {
-    margin: 0 0 15px 0;
-    font-size: 14px;
-    color: var(--text-muted);
-  }
-
-  .toast-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 8px;
-  }
-
-  .toast-header strong {
-    font-size: 16px;
-  }
-
-  .close-btn {
-    background: none;
-    border: none;
-    font-size: 20px;
-    color: #94a3b8;
-    cursor: pointer;
-  }
-
-  footer {
-    text-align: center;
-    padding: 40px;
-    font-size: 14px;
-    color: var(--text-muted);
-    border-top: 1px solid var(--border-color);
-  }
-  
-  .footer-operator {
-    font-weight: bold;
-    margin-bottom: 12px;
-    color: var(--text-main);
-  }
-</style>
+    footer {
+      text-align: center;
+      padding: 40px;
+      font-size: 14px;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border-color);
+    }
+  </style>
 </head>
 <body>
 
@@ -339,50 +313,79 @@
   <div class="badge">BIM Technical Helpdesk</div>
   <h1>AsyncBIM</h1>
   <p class="subtitle">
-    Revitの操作、エラー解決、Dynamo/Pythonスクリプトのデバッグまで。<br>
-    BIMの技術的な壁を、チャットでスピーディに突破します。
+    Revitの操作、エラー解決、Dynamoの活用相談まで。<br>
+    BIMの技術的な壁を、**専門的なアドバイス**でスピーディに突破できるよう支援します。
   </p>
   <a class="btn" href="https://forms.gle/ohT4uDPEGPSiJmTw5" target="_blank">無料相談を始める</a>
 </header>
 
 <section>
-  <h2 class="section-title">実務でこんな技術的な壁、ありませんか？</h2>
+  <h2 class="section-title">実務における「技術的な悩み」を解消</h2>
   <div class="card">
     <p style="text-align:center; color:var(--text-muted); margin-bottom: 30px;">
-      自己解決に何時間もかかってしまう技術的な課題を、プロが代わりに検証・回答します。
+      自己解決に何時間もかかってしまう課題に対し、プロが解決の糸口や最適な手順を**助言**します。
     </p>
-    
     <div class="pain-points">
-      <div class="pain-point-item">
-        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-        Revitの複雑なモデリングやファミリ作成でエラーが出る
-      </div>
-      <div class="pain-point-item">
-        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
-        DynamoやPythonのスクリプトで原因不明のエラーが消えない
-      </div>
-      <div class="pain-point-item">
-        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"></path></svg>
-        IFC連携やAutoCADとのデータ互換で情報が欠落する
-      </div>
-      <div class="pain-point-item">
-        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
-        ACCの機能設定やデータアクセス権限の仕様が分からない
-      </div>
+      <div class="pain-point-item">Revitの複雑なモデリングやファミリ作成のエラー原因が不明</div>
+      <div class="pain-point-item">Dynamoを活用したいが、適切なノード構成やアプローチが分からない</div>
+      <div class="pain-point-item">IFC連携やAutoCADとのデータ互換における最適な設定を知りたい</div>
+      <div class="pain-point-item">ACCの機能設定や権限運用のベストプラクティスを相談したい</div>
     </div>
   </div>
 </section>
 
 <section>
-  <h2 class="section-title">What We Offer</h2>
+  <h2 class="section-title">Tools & Workflow</h2>
   <div class="grid-2">
     <div class="card">
-      <h3>非同期チャットサポート</h3>
-      <p>操作手順の確認からエラーコードの解読まで、技術的な質問をテキストで投げておくだけで、実務経験豊富なプロが24時間以内に回答します。</p>
+      <span class="tool-tag tag-slack">Slack</span>
+      <h3>非同期チャット相談</h3>
+      <p>日常の疑問やエラーのスクリーンショットをSlackに投げるだけ。プロが状況を分析し、**「どう解決すべきか」のアドバイス**を24時間以内に回答します。</p>
     </div>
     <div class="card">
-      <h3>対応可能な技術領域</h3>
-      <p>Revitの基本・応用操作、ファミリ作成、ACCの機能設定、Dynamo/Pythonスクリプトのデバッグ、Google Sheetsを活用したデータ抽出などに対応します。</p>
+      <span class="tool-tag tag-notion">Notion</span>
+      <h3>技術ナレッジの蓄積</h3>
+      <p>過去のアドバイスはNotionへ整理・蓄積。社内の誰もが参照できる「BIMナレッジ集」として活用でき、チーム全体の自走力を高めます。</p>
+    </div>
+  </div>
+</section>
+
+<section style="background-color: #f1f5f9; border-radius: 20px; padding: 60px 20px;">
+  <h2 class="section-title">Support Examples</h2>
+  <p style="text-align:center; color:var(--text-muted); margin-top: -30px; margin-bottom: 40px;">※実務作業自体はお客様、解決のガイドを私たちが担当します</p>
+  
+  <div style="max-width: 800px; margin: auto;">
+    <div class="example-box">
+      <div class="example-q">
+        <span>Q.</span>
+        <span>Dynamoで「Null」が含まれているせいで後続のノードがエラーになります。</span>
+      </div>
+      <div class="example-a">
+        <span>A.</span>
+        <span>エラーの根本原因を特定し、Null回避のためのフィルタリング方法を助言。お客様側で反映いただけるよう、参考となるノード構成の画像を送付しました。</span>
+      </div>
+    </div>
+
+    <div class="example-box">
+      <div class="example-q">
+        <span>Q.</span>
+        <span>Revitで特定のファミリだけ集計表に表示されません。</span>
+      </div>
+      <div class="example-a">
+        <span>A.</span>
+        <span>共有パラメータの不整合や集計条件のミスを指摘。お客様自身で修正・確認いただけるよう、チェックリストを提示して解説しました。</span>
+      </div>
+    </div>
+
+    <div class="example-box">
+      <div class="example-q">
+        <span>Q.</span>
+        <span>ACCで協力会社に特定のフォルダだけ見せたい。</span>
+      </div>
+      <div class="example-a">
+        <span>A.</span>
+        <span>権限設定の仕様と注意点をアドバイス。最適なフォルダ構成案を提示し、設定ミスが起きないよう具体的な手順をガイドしました。</span>
+      </div>
     </div>
   </div>
 </section>
@@ -395,17 +398,21 @@
   </div>
 
   <div class="plan-grid">
+    <!-- Lite -->
     <div class="plan-box">
       <h3>Lite</h3>
       <span class="original-price">通常 ¥10,000</span>
       <div class="price">¥5,000<span> / 月</span></div>
       <p style="color:var(--text-muted); margin-bottom:20px;">まずは試してみたい方へ</p>
       <ul>
-        <li>月3件までの技術質問</li>
-        <li>24時間以内の返信</li>
+        <li><strong>月3件</strong>までの技術相談</li>
+        <li>Slackによる非同期相談</li>
+        <li>Notionへのナレッジ蓄積</li>
+        <li>全領域の技術アドバイス</li>
       </ul>
     </div>
 
+    <!-- Standard -->
     <div class="plan-box popular">
       <div class="popular-badge">一番人気</div>
       <h3>Standard</h3>
@@ -413,26 +420,31 @@
       <div class="price">¥15,000<span> / 月</span></div>
       <p style="color:var(--text-muted); margin-bottom:20px;">日常的なエラー解決に</p>
       <ul>
-        <li>月10件までの技術質問</li>
-        <li>優先的な返信対応</li>
-        <li>短いスクリプトのコードレビュー</li>
+        <li><strong>月10件</strong>までの技術相談</li>
+        <li>Slackによる非同期相談</li>
+        <li>Notionへのナレッジ蓄積</li>
+        <li>全領域前のアドバイス</li>
       </ul>
     </div>
 
+    <!-- Pro -->
     <div class="plan-box">
       <h3>Pro</h3>
       <span class="original-price">通常 ¥60,000</span>
       <div class="price">¥30,000<span> / 月</span></div>
       <p style="color:var(--text-muted); margin-bottom:20px;">チームの技術ハブとして</p>
       <ul>
-        <li>技術質問 無制限</li>
-        <li>高度なAPI/スクリプト技術相談</li>
+        <li><strong>技術相談 無制限</strong></li>
+        <li>Slackによる非同期相談</li>
+        <li>Notionへのナレッジ蓄積</li>
+        <li>全領域の技術アドバイス</li>
+        <li><strong style="color:var(--primary-color);">+ BIM環境ヒアリングと評価</strong></li>
       </ul>
     </div>
   </div>
 </section>
 
-<section style="text-align:center">
+<section style="text-align:center" id="contact">
   <h2 class="section-title">まずは技術的な課題をお聞かせください</h2>
   <a class="btn" href="https://forms.gle/ohT4uDPEGPSiJmTw5" target="_blank">お問い合わせフォームへ</a>
   <p style="margin-top:20px; color:var(--text-muted);">✉️ dx.bim.support@gmail.com</p>
@@ -444,22 +456,19 @@
 </footer>
 
 <div class="floating">
-  <a href="https://forms.gle/ohT4uDPEGPSiJmTw5" target="_blank" title="相談する">
-    💬
-  </a>
+  <a href="https://forms.gle/ohT4uDPEGPSiJmTw5" target="_blank" title="相談する">💬</a>
 </div>
 
 <div class="toast" id="toast">
   <div class="toast-header">
-    <strong>BIMの技術的疑問、解決します</strong>
+    <strong>BIMの技術的疑問、プロが回答します</strong>
     <button class="close-btn" onclick="closeToast()">×</button>
   </div>
-  <p>Revit操作やDynamoエラーなど、技術的な質問を非同期で相談できます。</p>
+  <p>Slackでの質疑応答、Notionでの知見蓄積。お客様の自走を全力でサポートします。</p>
   <a class="btn" style="padding: 8px 16px; font-size: 14px; width: 100%; box-sizing: border-box; text-align: center;" href="https://forms.gle/ohT4uDPEGPSiJmTw5" target="_blank">お問合せ</a>
 </div>
 
 <script>
-  // 3秒後に画面左下にトースト通知を表示
   setTimeout(function(){
     document.getElementById("toast").style.display = "block";
   }, 3000);
