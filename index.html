@@ -25,6 +25,8 @@
       --accent-color: #ef4444; 
       --slack-color: #4A154B;
       --notion-color: #000000;
+      --text-only-color: #0d9488;
+      --data-make-color: #7c3aed;
       --warning-color: #b45309;
       --warning-bg: #fffbeb;
     }
@@ -170,7 +172,7 @@
       font-size: 15px;
     }
 
-    /* シミュレーターセクション用のスタイル */
+    /* 新・料金シミュレーター用のスタイル */
     .simulator-container {
       background: var(--card-bg);
       border: 2px solid var(--border-color);
@@ -179,44 +181,73 @@
       box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05);
     }
     
-    .simulator-ui {
+    .simulator-row {
       margin-bottom: 35px;
+      padding-bottom: 25px;
+      border-bottom: 1px solid var(--border-color);
     }
 
     .slider-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 15px;
+      margin-bottom: 5px;
+    }
+
+    .slider-title {
+      font-weight: bold;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .slider-title::before {
+      content: "";
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+    .title-text-only::before { background-color: var(--text-only-color); }
+    .title-data-make::before { background-color: var(--data-make-color); }
+
+    .slider-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin: 0 0 15px 0;
     }
 
     .count-display {
       font-size: 28px;
       font-weight: 800;
-      color: var(--primary-color);
     }
+    .display-text-only { color: var(--text-only-color); }
+    .display-data-make { color: var(--data-make-color); }
 
     .range-slider {
       -webkit-appearance: none;
       width: 100%;
-      height: 10px;
+      height: 8px;
       border-radius: 5px;
       background: #e2e8f0;
       outline: none;
-      margin: 20px 0;
+      margin: 15px 0;
     }
 
     .range-slider::-webkit-slider-thumb {
       -webkit-appearance: none;
       appearance: none;
-      width: 26px;
-      height: 26px;
+      width: 24px;
+      height: 24px;
       border-radius: 50%;
-      background: var(--primary-color);
       cursor: pointer;
       transition: transform 0.1s;
-      box-shadow: 0 2px 6px rgba(37, 99, 235, 0.4);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
     }
+
+    #textOnlyRange::-webkit-slider-thumb { background: var(--text-only-color); }
+    #dataMakeRange::-webkit-slider-thumb { background: var(--data-make-color); }
 
     .range-slider::-webkit-slider-thumb:hover {
       transform: scale(1.15);
@@ -226,8 +257,7 @@
       display: flex;
       justify-content: space-between;
       color: var(--text-muted);
-      font-size: 13px;
-      font-weight: bold;
+      font-size: 12px;
     }
 
     .result-box {
@@ -239,7 +269,7 @@
     }
 
     .result-price-wrapper {
-      margin: 15px 0;
+      margin: 10px 0;
     }
 
     .calc-price {
@@ -254,23 +284,23 @@
       font-weight: normal;
     }
 
-    .unit-price-note {
-      color: var(--text-muted);
+    .price-breakdown {
       font-size: 14px;
-      margin-top: 5px;
+      color: var(--text-muted);
+      margin-bottom: 15px;
     }
 
-    /* 警告・注意用通知スタイル */
     .alert-note {
       background: var(--warning-bg);
       border: 1px solid #fde68a;
       color: var(--warning-color);
       padding: 12px;
       border-radius: 8px;
-      font-size: 14px;
+      font-size: 13px;
       font-weight: bold;
       margin-top: 15px;
       display: none;
+      text-align: left;
     }
 
     .features-list {
@@ -289,7 +319,7 @@
       align-items: center;
       gap: 10px;
       color: var(--text-main);
-      font-size: 15px;
+      font-size: 14px;
     }
 
     .features-list li::before {
@@ -394,39 +424,56 @@
 <section>
   <h2 class="section-title">Flexible Pricing</h2>
   <p style="text-align:center; color:var(--text-muted); margin-top: -30px; margin-bottom: 40px;">
-    固定プランはありません。毎月の「質問数」に応じて料金がリニアに変動する合理的なシステムです。<br>
-    月間20件まではボリュームディスカウントが適用されますが、それ以降は高負荷対応のため1件ごとに追加従量料金がかかります。
+    固定プランはありません。毎月の「回答タイプ別の質問数」に応じて料金がクリアに動く従量システムです。<br>
+    ご質問の際、お客様側でどちらの回答形式を希望するかお選びいただけます。
   </p>
 
   <div class="simulator-container">
-    <div class="simulator-ui">
+    
+    <!-- スライダー1: テキスト回答 -->
+    <div class="simulator-row">
       <div class="slider-header">
-        <label for="questionRange" style="font-weight: bold; font-size: 18px;">想定される月間質問数</label>
-        <div class="count-display"><span id="countOutput">5</span> 件</div>
+        <span class="slider-title title-text-only">A. テキスト回答のみ</span>
+        <div class="count-display display-text-only"><span id="textOnlyOutput">3</span> 件</div>
       </div>
-      <input type="range" id="questionRange" class="range-slider" min="0" max="30" value="5">
+      <p class="slider-desc">簡易な操作エラーの解決、設定方法、仕様確認など（通常時: ¥5,000 / 件）</p>
+      <input type="range" id="textOnlyRange" class="range-slider" min="0" max="25" value="3">
       <div class="slider-labels">
-        <span>0件 (環境維持)</span>
-        <span>10件</span>
+        <span>0件</span>
         <span>20件 (通常枠)</span>
-        <span>30件 (超過加算)</span>
+        <span>25件 (超過枠: ¥10,000/件)</span>
       </div>
     </div>
 
+    <!-- スライダー2: 手順書＋データ作成 -->
+    <div class="simulator-row">
+      <div class="slider-header">
+        <span class="slider-title title-data-make">B. 手順書 ＋ データ・ノード作成あり</span>
+        <div class="count-display display-data-make"><span id="dataMakeOutput">1</span> 件</div>
+      </div>
+      <p class="slider-desc">複雑なファミリ作成、Dynamoのノード構築、具体的な手順書付きの解説など（通常時: ¥15,000 / 件）</p>
+      <input type="range" id="dataMakeRange" class="range-slider" min="0" max="25" value="1">
+      <div class="slider-labels">
+        <span>0件</span>
+        <span>20件 (通常枠)</span>
+        <span>25件 (超過枠: ¥25,000/件)</span>
+      </div>
+    </div>
+
+    <!-- 計算結果ボックス -->
     <div class="result-box">
       <p style="font-weight: bold; margin: 0; color: var(--text-muted);">推定月額費用</p>
       <div class="result-price-wrapper">
-        <span class="calc-price">¥<span id="priceOutput">57,500</span></span><span> / 月</span>
+        <span class="calc-price">¥<span id="priceOutput">40,000</span></span><span> / 月</span>
       </div>
-      <div id="unitPriceNote" class="unit-price-note">1件あたり約 ¥9,500 (ボリュームディスカウント適用済)</div>
+      <div id="priceBreakdown" class="price-breakdown">内訳: 基本料 ¥10,000 + A枠 ¥15,000 + B枠 ¥15,000</div>
       
-      <!-- 21件以上で発火する負荷警告用アラート -->
-      <div id="alertNote" class="alert-note">⚠️ 月間20件超過：これ以降は高負荷対応のため、ストッパーなし（1件あたり +¥15,000）の追加費用が加算されます。連投にご注意ください。</div>
+      <div id="alertNote" class="alert-note"></div>
       
       <ul class="features-list">
-        <li>Slackによる非同期アドバイス対応</li>
-        <li>Notionへの独自技術ナレッジ蓄積・共有</li>
-        <li>Revit / Dynamo / ACC 全領域の技術相談に対応</li>
+        <li>相談時にチャット(Slack)上で回答タイプ「A」または「B」をご指定いただけます</li>
+        <li>過去の全ての回答は、社内で共有可能なNotion技術ナレッジへ綺麗に蓄積</li>
+        <li>合計の月間質問数が20件を超えたタイプは、高負荷ペナルティとして単価が上がります</li>
       </ul>
     </div>
   </div>
@@ -466,62 +513,64 @@
     document.getElementById("toast").style.display = "none";
   }
 
-  // 料金システム（20件最大ディスカウント＆21件以降ペナルティ加算・青天井モデル）
-  const slider = document.getElementById("questionRange");
-  const countOutput = document.getElementById("countOutput");
+  // 回答タイプ別の明快な従量課金システム
+  const textSlider = document.getElementById("textOnlyRange");
+  const dataSlider = document.getElementById("dataMakeRange");
+  
+  const textOutput = document.getElementById("textOnlyOutput");
+  const dataOutput = document.getElementById("dataMakeOutput");
   const priceOutput = document.getElementById("priceOutput");
-  const unitPriceNote = document.getElementById("unitPriceNote");
+  const priceBreakdown = document.getElementById("priceBreakdown");
   const alertNote = document.getElementById("alertNote");
 
-  function calculatePrice(qty) {
+  function updateSimulator() {
+    const qtyText = parseInt(textSlider.value);
+    const qtyData = parseInt(dataSlider.value);
+    
+    textOutput.innerText = qtyText;
+    dataOutput.innerText = qtyData;
+
     const basePrice = 10000; // 基本料金
     
-    if (qty === 0) {
-      return { total: basePrice, unit: 0, zone: "base" };
+    // A: テキスト回答の料金計算（20件まで¥5,000、以降¥10,000）
+    let textCost = 0;
+    if (qtyText <= 20) {
+      textCost = qtyText * 5000;
+    } else {
+      textCost = (20 * 5000) + ((qtyText - 20) * 10000);
     }
-    
-    // 20件までのディスカウント計算（ベース単価10,000円から、1件ごとに1%ずつ安くする）
-    if (qty <= 20) {
-      const initialUnit = 10000;
-      const discountRate = qty * 0.01; // 20件目で20%引き（単価8,000円）
-      const dynamicUnit = initialUnit * (1 - discountRate);
-      const total = basePrice + (qty * dynamicUnit);
-      return { total: Math.round(total), unit: Math.round(dynamicUnit), zone: "discount" };
+
+    // B: データ作成の料金計算（20件まで¥15,000、以降¥25,000）
+    let dataCost = 0;
+    if (qtyData <= 20) {
+      dataCost = qtyData * 15000;
+    } else {
+      dataCost = (20 * 15000) + ((qtyData - 20) * 25000);
     }
-    
-    // 21件以上の高負荷追加料金計算（20件時点の総額170,000円 ＋ 超過分×15,000円。上限なし）
-    const priceAt20 = 170000; 
-    const extraQty = qty - 20;
-    const extraUnit = 15000; // 負荷対応のペナルティ従量単価
-    const total = priceAt20 + (extraQty * extraUnit);
-    
-    return { total: total, unit: extraUnit, zone: "extra" };
-  }
 
-  function updateSimulator() {
-    const qty = parseInt(slider.value);
-    countOutput.innerText = qty;
+    // 合計
+    const total = basePrice + textCost + dataCost;
 
-    const result = calculatePrice(qty);
-    priceOutput.innerText = result.total.toLocaleString();
+    // 画面反映
+    priceOutput.innerText = total.toLocaleString();
+    priceBreakdown.innerText = `内訳: 基本料 ¥${basePrice.toLocaleString()} + A枠 ¥${textCost.toLocaleString()} + B枠 ¥${dataCost.toLocaleString()}`;
 
-    // ゾーンごとの表示出し分け
-    if (result.zone === "base") {
-      unitPriceNote.innerText = "専用Notion環境の維持・Slack連携の基本料金です";
-      alertNote.style.display = "none";
-    } 
-    else if (result.zone === "discount") {
-      unitPriceNote.innerText = `1件あたり約 ¥${result.unit.toLocaleString()} (ボリュームディスカウント適用済)`;
-      alertNote.style.display = "none";
-    } 
-    else if (result.zone === "extra") {
-      unitPriceNote.innerText = `基本枠20件分（¥170,000） ＋ 超過分1件あたり ¥${result.unit.toLocaleString()}`;
+    // 20件超過の警告表示コントロール
+    let warnings = [];
+    if (qtyText > 20) warnings.push(`「A.テキスト回答」が通常枠を超過（+ ${qtyText - 20}件分は単価¥10,000適用）`);
+    if (qtyData > 20) warnings.push(`「B.データ作成」が通常枠を超過（+ ${qtyData - 20}件分は単価¥25,000適用）`);
+
+    if (warnings.length > 0) {
+      alertNote.innerHTML = "⚠️ 高負荷警告:<br>" + warnings.join("<br>") + "<br>※超過分はストッパーなしで加算されます。";
       alertNote.style.display = "block";
+    } else {
+      alertNote.style.display = "none";
     }
   }
 
-  // イベントリスナーの登録
-  slider.addEventListener("input", updateSimulator);
+  // イベントリスナー
+  textSlider.addEventListener("input", updateSimulator);
+  dataSlider.addEventListener("input", updateSimulator);
   
   // 初期実行
   updateSimulator();
