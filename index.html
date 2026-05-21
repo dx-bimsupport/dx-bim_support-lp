@@ -25,6 +25,8 @@
       --accent-color: #ef4444; 
       --slack-color: #4A154B;
       --notion-color: #000000;
+      --warning-color: #b45309;
+      --warning-bg: #fffbeb;
     }
 
     body {
@@ -168,134 +170,132 @@
       font-size: 15px;
     }
 
-    .campaign-banner {
-      background: linear-gradient(90deg, #ef4444, #f97316);
-      color: white;
-      text-align: center;
-      padding: 12px 20px;
-      border-radius: 8px;
-      margin-bottom: 40px;
-      font-weight: bold;
-      font-size: 16px;
-      box-shadow: 0 4px 6px -1px rgba(239, 68, 68, 0.3);
-    }
-
-    .plan-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-    }
-
-    .plan-box {
+    /* シミュレーターセクション用のスタイル */
+    .simulator-container {
       background: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
-      padding: 40px 30px;
-      text-align: center;
-      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
-      position: relative;
+      border: 2px solid var(--border-color);
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05);
+    }
+    
+    .simulator-ui {
+      margin-bottom: 35px;
     }
 
-    .plan-box.popular {
-      border: 2px solid var(--primary-color);
-      transform: scale(1.02);
+    .slider-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
     }
 
-    .popular-badge {
-      position: absolute;
-      top: -12px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: var(--primary-color);
-      color: white;
-      padding: 4px 12px;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: bold;
-    }
-
-    .original-price {
-      font-size: 16px;
-      color: var(--text-muted);
-      text-decoration: line-through;
-      display: block;
-      margin-bottom: -15px;
-      margin-top: 10px;
-    }
-
-    .price {
-      font-size: 36px;
+    .count-display {
+      font-size: 28px;
       font-weight: 800;
-      color: var(--accent-color);
+      color: var(--primary-color);
+    }
+
+    .range-slider {
+      -webkit-appearance: none;
+      width: 100%;
+      height: 10px;
+      border-radius: 5px;
+      background: #e2e8f0;
+      outline: none;
       margin: 20px 0;
     }
 
-    .price span {
-      font-size: 16px;
-      color: var(--text-muted);
-      font-weight: normal;
+    .range-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--primary-color);
+      cursor: pointer;
+      transition: transform 0.1s;
+      box-shadow: 0 2px 6px rgba(37, 99, 235, 0.4);
     }
 
-    .plan-box ul {
-      text-align: left;
-      list-style: none;
-      padding: 0;
-      color: var(--text-muted);
+    .range-slider::-webkit-slider-thumb:hover {
+      transform: scale(1.15);
     }
 
-    .plan-box ul li {
-      margin-bottom: 12px;
+    .slider-labels {
       display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .plan-box ul li::before {
-      content: "✓";
-      color: var(--primary-color);
+      justify-content: space-between;
+      color: var(--text-muted);
+      font-size: 13px;
       font-weight: bold;
     }
 
-    .floating {
-      position: fixed;
-      right: 30px;
-      bottom: 30px;
-      z-index: 100;
+    .result-box {
+      background: #f8fafc;
+      border-radius: 12px;
+      padding: 30px;
+      text-align: center;
+      border: 1px solid var(--border-color);
     }
 
-    .floating a {
+    .result-price-wrapper {
+      margin: 15px 0;
+    }
+
+    .calc-price {
+      font-size: 48px;
+      font-weight: 800;
+      color: var(--accent-color);
+    }
+
+    .calc-price span {
+      font-size: 18px;
+      color: var(--text-main);
+      font-weight: normal;
+    }
+
+    .unit-price-note {
+      color: var(--text-muted);
+      font-size: 14px;
+      margin-top: 5px;
+    }
+
+    /* 警告・注意用通知スタイル */
+    .alert-note {
+      background: var(--warning-bg);
+      border: 1px solid #fde68a;
+      color: var(--warning-color);
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: bold;
+      margin-top: 15px;
+      display: none;
+    }
+
+    .features-list {
+      text-align: left;
+      max-width: 500px;
+      margin: 25px auto 0 auto;
+      padding: 0;
+      list-style: none;
+      border-top: 1px dashed var(--border-color);
+      padding-top: 20px;
+    }
+
+    .features-list li {
+      margin-bottom: 12px;
       display: flex;
       align-items: center;
-      justify-content: center;
-      width: 60px;
-      height: 60px;
-      background: var(--primary-color);
-      color: white;
-      border-radius: 50%;
-      text-decoration: none;
-      box-shadow: 0 10px 25px rgba(37, 99, 235, 0.5);
-      transition: transform 0.3s;
-      font-size: 24px;
+      gap: 10px;
+      color: var(--text-main);
+      font-size: 15px;
     }
 
-    .toast {
-      position: fixed;
-      bottom: 30px;
-      left: 30px;
-      background: var(--card-bg);
-      border-left: 4px solid var(--primary-color);
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-      display: none;
-      z-index: 200;
-      max-width: 320px;
-      animation: slideIn 0.5s ease-out forwards;
-    }
-
-    @keyframes slideIn {
-      from { transform: translateX(-100%); opacity: 0; }
-      to { transform: translateX(0); opacity: 1; }
+    .features-list li::before {
+      content: "✓";
+      color: var(--primary-color);
+      font-weight: bold;
     }
 
     footer {
@@ -390,55 +390,43 @@
   </div>
 </section>
 
+<!-- 料金シミュレーターセクション -->
 <section>
-  <h2 class="section-title">Simple Pricing</h2>
-  
-  <div class="campaign-banner">
-    🎉 リリース記念キャンペーン！将来の通常価格から【50%OFF】の特別価格で提供中
-  </div>
+  <h2 class="section-title">Flexible Pricing</h2>
+  <p style="text-align:center; color:var(--text-muted); margin-top: -30px; margin-bottom: 40px;">
+    固定プランはありません。毎月の「質問数」に応じて料金がリニアに変動する合理的なシステムです。<br>
+    月間20件まではボリュームディスカウントが適用されますが、それ以降は高負荷対応のため1件ごとに追加従量料金がかかります。
+  </p>
 
-  <div class="plan-grid">
-    <!-- Lite -->
-    <div class="plan-box">
-      <h3>Lite</h3>
-      <span class="original-price">通常 ¥10,000</span>
-      <div class="price">¥5,000<span> / 月</span></div>
-      <p style="color:var(--text-muted); margin-bottom:20px;">まずは試してみたい方へ</p>
-      <ul>
-        <li><strong>月3件</strong>までの技術相談</li>
-        <li>Slackによる非同期相談</li>
-        <li>Notionへのナレッジ蓄積</li>
-        <li>全領域の技術アドバイス</li>
-      </ul>
+  <div class="simulator-container">
+    <div class="simulator-ui">
+      <div class="slider-header">
+        <label for="questionRange" style="font-weight: bold; font-size: 18px;">想定される月間質問数</label>
+        <div class="count-display"><span id="countOutput">5</span> 件</div>
+      </div>
+      <input type="range" id="questionRange" class="range-slider" min="0" max="30" value="5">
+      <div class="slider-labels">
+        <span>0件 (環境維持)</span>
+        <span>10件</span>
+        <span>20件 (通常枠)</span>
+        <span>30件 (超過加算)</span>
+      </div>
     </div>
 
-    <!-- Standard -->
-    <div class="plan-box popular">
-      <div class="popular-badge">一番人気</div>
-      <h3>Standard</h3>
-      <span class="original-price">通常 ¥30,000</span>
-      <div class="price">¥15,000<span> / 月</span></div>
-      <p style="color:var(--text-muted); margin-bottom:20px;">日常的なエラー解決に</p>
-      <ul>
-        <li><strong>月10件</strong>までの技術相談</li>
-        <li>Slackによる非同期相談</li>
-        <li>Notionへのナレッジ蓄積</li>
-        <li>全領域前のアドバイス</li>
-      </ul>
-    </div>
-
-    <!-- Pro -->
-    <div class="plan-box">
-      <h3>Pro</h3>
-      <span class="original-price">通常 ¥60,000</span>
-      <div class="price">¥30,000<span> / 月</span></div>
-      <p style="color:var(--text-muted); margin-bottom:20px;">チームの技術ハブとして</p>
-      <ul>
-        <li><strong>技術相談 無制限</strong></li>
-        <li>Slackによる非同期相談</li>
-        <li>Notionへのナレッジ蓄積</li>
-        <li>全領域の技術アドバイス</li>
-        <li><strong style="color:var(--primary-color);">+ BIM環境ヒアリングと評価</strong></li>
+    <div class="result-box">
+      <p style="font-weight: bold; margin: 0; color: var(--text-muted);">推定月額費用</p>
+      <div class="result-price-wrapper">
+        <span class="calc-price">¥<span id="priceOutput">57,500</span></span><span> / 月</span>
+      </div>
+      <div id="unitPriceNote" class="unit-price-note">1件あたり約 ¥9,500 (ボリュームディスカウント適用済)</div>
+      
+      <!-- 21件以上で発火する負荷警告用アラート -->
+      <div id="alertNote" class="alert-note">⚠️ 月間20件超過：これ以降は高負荷対応のため、ストッパーなし（1件あたり +¥15,000）の追加費用が加算されます。連投にご注意ください。</div>
+      
+      <ul class="features-list">
+        <li>Slackによる非同期アドバイス対応</li>
+        <li>Notionへの独自技術ナレッジ蓄積・共有</li>
+        <li>Revit / Dynamo / ACC 全領域の技術相談に対応</li>
       </ul>
     </div>
   </div>
@@ -469,6 +457,7 @@
 </div>
 
 <script>
+  // トースト表示ロジック
   setTimeout(function(){
     document.getElementById("toast").style.display = "block";
   }, 3000);
@@ -476,6 +465,66 @@
   function closeToast(){
     document.getElementById("toast").style.display = "none";
   }
+
+  // 料金システム（20件最大ディスカウント＆21件以降ペナルティ加算・青天井モデル）
+  const slider = document.getElementById("questionRange");
+  const countOutput = document.getElementById("countOutput");
+  const priceOutput = document.getElementById("priceOutput");
+  const unitPriceNote = document.getElementById("unitPriceNote");
+  const alertNote = document.getElementById("alertNote");
+
+  function calculatePrice(qty) {
+    const basePrice = 10000; // 基本料金
+    
+    if (qty === 0) {
+      return { total: basePrice, unit: 0, zone: "base" };
+    }
+    
+    // 20件までのディスカウント計算（ベース単価10,000円から、1件ごとに1%ずつ安くする）
+    if (qty <= 20) {
+      const initialUnit = 10000;
+      const discountRate = qty * 0.01; // 20件目で20%引き（単価8,000円）
+      const dynamicUnit = initialUnit * (1 - discountRate);
+      const total = basePrice + (qty * dynamicUnit);
+      return { total: Math.round(total), unit: Math.round(dynamicUnit), zone: "discount" };
+    }
+    
+    // 21件以上の高負荷追加料金計算（20件時点の総額170,000円 ＋ 超過分×15,000円。上限なし）
+    const priceAt20 = 170000; 
+    const extraQty = qty - 20;
+    const extraUnit = 15000; // 負荷対応のペナルティ従量単価
+    const total = priceAt20 + (extraQty * extraUnit);
+    
+    return { total: total, unit: extraUnit, zone: "extra" };
+  }
+
+  function updateSimulator() {
+    const qty = parseInt(slider.value);
+    countOutput.innerText = qty;
+
+    const result = calculatePrice(qty);
+    priceOutput.innerText = result.total.toLocaleString();
+
+    // ゾーンごとの表示出し分け
+    if (result.zone === "base") {
+      unitPriceNote.innerText = "専用Notion環境の維持・Slack連携の基本料金です";
+      alertNote.style.display = "none";
+    } 
+    else if (result.zone === "discount") {
+      unitPriceNote.innerText = `1件あたり約 ¥${result.unit.toLocaleString()} (ボリュームディスカウント適用済)`;
+      alertNote.style.display = "none";
+    } 
+    else if (result.zone === "extra") {
+      unitPriceNote.innerText = `基本枠20件分（¥170,000） ＋ 超過分1件あたり ¥${result.unit.toLocaleString()}`;
+      alertNote.style.display = "block";
+    }
+  }
+
+  // イベントリスナーの登録
+  slider.addEventListener("input", updateSimulator);
+  
+  // 初期実行
+  updateSimulator();
 </script>
 
 </body>
