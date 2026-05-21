@@ -26,7 +26,7 @@
       --slack-color: #4A154B;
       --notion-color: #000000;
       --text-only-color: #0d9488;
-      --data-make-color: #7c3aed;
+      --data-make-color: #6366f1;
       --warning-color: #b45309;
       --warning-bg: #fffbeb;
     }
@@ -172,7 +172,7 @@
       font-size: 15px;
     }
 
-    /* 新・料金シミュレーター用のスタイル */
+    /* 料金シミュレーター用のスタイル */
     .simulator-container {
       background: var(--card-bg);
       border: 2px solid var(--border-color);
@@ -328,6 +328,30 @@
       font-weight: bold;
     }
 
+    /* 受託開発案内用の特別枠ボックス */
+    .outsource-box {
+      background: #f1f5f9;
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 24px;
+      margin-top: 25px;
+      text-align: left;
+    }
+    
+    .outsource-box h4 {
+      margin: 0 0 8px 0;
+      color: #0f172a;
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .outsource-box p {
+      margin: 0;
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
     footer {
       text-align: center;
       padding: 40px;
@@ -425,7 +449,7 @@
   <h2 class="section-title">Flexible Pricing</h2>
   <p style="text-align:center; color:var(--text-muted); margin-top: -30px; margin-bottom: 40px;">
     固定プランはありません。毎月の「回答タイプ別の質問数」に応じて料金がクリアに動く従量システムです。<br>
-    ご質問の際、お客様側でどちらの回答形式を希望するかお選びいただけます。
+    本サービスは**「質疑・回答（アドバイザリー）」**であるため、実際の作業はお客様自身で行っていただきます。
   </p>
 
   <div class="simulator-container">
@@ -436,7 +460,7 @@
         <span class="slider-title title-text-only">A. テキスト回答のみ</span>
         <div class="count-display display-text-only"><span id="textOnlyOutput">3</span> 件</div>
       </div>
-      <p class="slider-desc">簡易な操作エラーの解決、設定方法、仕様確認など（通常時: ¥5,000 / 件）</p>
+      <p class="slider-desc">簡易な操作エラーの解決、設定方法、仕様確認など（通常枠内: ¥5,000 / 件）</p>
       <input type="range" id="textOnlyRange" class="range-slider" min="0" max="25" value="3">
       <div class="slider-labels">
         <span>0件</span>
@@ -445,13 +469,14 @@
       </div>
     </div>
 
-    <!-- スライダー2: 手順書＋データ作成 -->
+    <!-- スライダー2: 実装手順・サンプル提示 -->
     <div class="simulator-row">
       <div class="slider-header">
-        <span class="slider-title title-data-make">B. 手順書 ＋ データ・ノード作成あり</span>
+        <span class="slider-title title-data-make">B. 詳細手順書 ＋ 検証用サンプル提示</span>
         <div class="count-display display-data-make"><span id="dataMakeOutput">1</span> 件</div>
       </div>
-      <p class="slider-desc">複雑なファミリ作成、Dynamoのノード構築、具体的な手順書付きの解説など（通常時: ¥15,000 / 件）</p>
+      <p class="slider-desc">ファミリ作成のロジック解説、Dynamoノード構成の図解提示など（通常枠内: ¥15,000 / 件）<br>
+      <span style="color:var(--accent-color); font-size:12px; font-weight:bold;">※スクリプト完成品やファミリデータの納品、実データの修正などの「実作業」は含みません。</span></p>
       <input type="range" id="dataMakeRange" class="range-slider" min="0" max="25" value="1">
       <div class="slider-labels">
         <span>0件</span>
@@ -471,10 +496,19 @@
       <div id="alertNote" class="alert-note"></div>
       
       <ul class="features-list">
-        <li>相談時にチャット(Slack)上で回答タイプ「A」または「B」をご指定いただけます</li>
+        <li>相談時にチャット(Slack)上で希望の回答タイプ「A」または「B」をご指定いただけます</li>
         <li>過去の全ての回答は、社内で共有可能なNotion技術ナレッジへ綺麗に蓄積</li>
         <li>合計の月間質問数が20件を超えたタイプは、高負荷ペナルティとして単価が上がります</li>
       </ul>
+
+      <!-- 【追加】受託開発への誘導枠 -->
+      <div class="outsource-box">
+        <h4>💡 実際の作業（丸投げ）を希望される場合</h4>
+        <p>
+          「自社で対応するリソースがない」「Dynamoスクリプトを代わりに組んでほしい」「実プロジェクトのテンプレートを修正してほしい」といった実作業につきましては、**別途個別見積もりにて受託開発・制作が可能**です。お気軽にお問い合わせフォームよりご相談ください。
+        </p>
+      </div>
+
     </div>
   </div>
 </section>
@@ -540,7 +574,7 @@
       textCost = (20 * 5000) + ((qtyText - 20) * 10000);
     }
 
-    // B: データ作成の料金計算（20件まで¥15,000、以降¥25,000）
+    // B: サンプル提示の料金計算（20件まで¥15,000、以降¥25,000）
     let dataCost = 0;
     if (qtyData <= 20) {
       dataCost = qtyData * 15000;
@@ -558,7 +592,7 @@
     // 20件超過の警告表示コントロール
     let warnings = [];
     if (qtyText > 20) warnings.push(`「A.テキスト回答」が通常枠を超過（+ ${qtyText - 20}件分は単価¥10,000適用）`);
-    if (qtyData > 20) warnings.push(`「B.データ作成」が通常枠を超過（+ ${qtyData - 20}件分は単価¥25,000適用）`);
+    if (qtyData > 20) warnings.push(`「B.詳細手順・サンプル」が通常枠を超過（+ ${qtyData - 20}件分は単価¥25,000適用）`);
 
     if (warnings.length > 0) {
       alertNote.innerHTML = "⚠️ 高負荷警告:<br>" + warnings.join("<br>") + "<br>※超過分はストッパーなしで加算されます。";
