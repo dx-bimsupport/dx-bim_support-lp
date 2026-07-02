@@ -12,57 +12,233 @@
   </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AsyncBIM | 次世代のBIM技術アドバイザリー</title>
+  <meta name="theme-color" content="#0f172a">
+  <meta name="description" content="Revitの操作、エラー解決、Dynamoの活用相談まで。BIMの技術的な壁を専門的なアドバイスでスピーディに突破できるよう支援するBIM技術相談窓口「BIMほっとライン」。">
+  <meta property="og:title" content="BIMほっとライン | Revit・Dynamoの技術相談窓口">
+  <meta property="og:description" content="Revitの操作、エラー解決、Dynamoの活用相談まで。BIMの技術的な壁を専門的なアドバイスでスピーディに突破できるよう支援します。">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ja_JP">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%232563eb'/%3E%3Cpath d='M30 65V35l20-12 20 12v30l-20 12z' fill='none' stroke='white' stroke-width='6' stroke-linejoin='round'/%3E%3Cpath d='M30 35l20 12 20-12M50 47v30' fill='none' stroke='white' stroke-width='6' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <title>BIMほっとライン | Revit・Dynamoの技術相談窓口</title>
   <style>
+    /* ===== Variables ===== */
     :root {
       --primary-color: #2563eb;
       --primary-hover: #1d4ed8;
+      --primary-light: #93c5fd;
+      --gradient-brand: linear-gradient(135deg, #2563eb, #4f46e5);
       --bg-color: #f8fafc;
       --text-main: #1e293b;
       --text-muted: #64748b;
       --card-bg: #ffffff;
       --border-color: #e2e8f0;
-      --accent-color: #ef4444; 
+      --accent-color: #ef4444;
       --slack-color: #4A154B;
       --notion-color: #000000;
       --text-only-color: #0d9488;
       --data-make-color: #6366f1;
       --warning-color: #b45309;
       --warning-bg: #fffbeb;
+      --shadow-sm: 0 4px 6px -1px rgba(15, 23, 42, 0.05);
+      --shadow-md: 0 10px 25px -5px rgba(15, 23, 42, 0.12);
+      --shadow-lg: 0 20px 40px -10px rgba(15, 23, 42, 0.18);
+      --radius-lg: 16px;
     }
 
+    /* ===== Base ===== */
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
     body {
-      font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+      font-family: "Inter", "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
       margin: 0;
       background-color: var(--bg-color);
       color: var(--text-main);
-      line-height: 1.6;
-      letter-spacing: 0.05em;
+      line-height: 1.7;
+      letter-spacing: 0.02em;
+      -webkit-font-smoothing: antialiased;
     }
 
-    header {
-      padding: 100px 20px;
+    section {
+      padding: 90px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .kicker {
+      display: block;
       text-align: center;
-      background: linear-gradient(135deg, #0f172a, #1e293b);
+      color: var(--primary-color);
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 30px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      margin: 0 0 50px 0;
+      color: var(--text-main);
+    }
+
+    /* ===== Navbar ===== */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .nav-inner {
+      max-width: 1100px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 20px;
+    }
+
+    .nav-logo {
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 18px;
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+
+    .nav-logo span { color: var(--primary-light); }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+    }
+
+    .nav-links a {
+      color: #cbd5e1;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover { color: #ffffff; }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+    }
+
+    /* ===== Buttons ===== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--gradient-brand);
       color: white;
+      padding: 16px 36px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 15px;
+      transition: all 0.3s cubic-bezier(.16,1,.3,1);
+      box-shadow: 0 8px 20px -6px rgba(37, 99, 235, 0.5);
+    }
+
+    .btn::after { content: "→"; transition: transform 0.3s ease; }
+
+    .btn:hover {
+      background: var(--primary-hover);
+      transform: translateY(-3px);
+      box-shadow: 0 14px 28px -6px rgba(37, 99, 235, 0.6);
+    }
+
+    .btn:hover::after { transform: translateX(4px); }
+
+    .btn-sm {
+      padding: 10px 20px;
+      font-size: 13px;
+      box-shadow: none;
+    }
+
+    /* ===== Hero ===== */
+    header {
+      position: relative;
+      padding: 120px 20px 100px;
+      text-align: center;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(37, 99, 235, 0.25), transparent 40%),
+        radial-gradient(circle at 85% 25%, rgba(99, 102, 241, 0.22), transparent 45%),
+        linear-gradient(135deg, #0f172a, #1e293b);
+      color: white;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: radial-gradient(circle at 50% 0%, black, transparent 75%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
     }
 
     .badge {
-      display: inline-block;
-      background: rgba(255, 255, 255, 0.1);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
       color: #93c5fd;
-      padding: 6px 16px;
-      border-radius: 20px;
-      font-size: 14px;
-      font-weight: bold;
-      margin-bottom: 20px;
+      padding: 8px 18px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 24px;
       backdrop-filter: blur(4px);
     }
 
+    .badge::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.2);
+      animation: blink 2s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
     h1 {
-      font-size: 42px;
-      margin: 0 0 16px 0;
+      font-size: 48px;
+      margin: 0 0 18px 0;
       font-weight: 800;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #ffffff, #93c5fd);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
 
     .subtitle {
@@ -72,38 +248,7 @@
       margin: 0 auto 40px auto;
     }
 
-    .btn {
-      display: inline-block;
-      background: var(--primary-color);
-      color: white;
-      padding: 16px 32px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.3);
-    }
-
-    .btn:hover {
-      background: var(--primary-hover);
-      transform: translateY(-2px);
-      box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.4);
-    }
-
-    section {
-      padding: 80px 20px;
-      max-width: 1000px;
-      margin: auto;
-    }
-
-    .section-title {
-      text-align: center;
-      font-size: 28px;
-      font-weight: 700;
-      margin-bottom: 50px;
-      color: var(--text-main);
-    }
-
+    /* ===== Cards ===== */
     .grid-2 {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -115,22 +260,32 @@
       border: 1px solid var(--border-color);
       border-radius: 12px;
       padding: 40px;
-      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
     }
 
-    .tool-tag {
-      display: inline-block;
-      padding: 2px 8px;
-      border-radius: 4px;
-      font-size: 12px;
-      font-weight: bold;
-      color: white;
-      margin-bottom: 8px;
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+      border-color: rgba(37, 99, 235, 0.3);
     }
-    .tag-slack { background-color: var(--slack-color); }
-    .tag-notion { background-color: var(--notion-color); }
 
+    .tool-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      color: #ffffff;
+      margin-bottom: 18px;
+    }
+
+    .tool-icon.slack { background: var(--slack-color); }
+    .tool-icon.notion { background: var(--notion-color); }
+
+    /* ===== Pain points ===== */
     .pain-points {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -139,62 +294,96 @@
     }
 
     .pain-point-item {
-      background: var(--bg-color);
+      background: #ffffff;
+      border: 1px solid var(--border-color);
       border-left: 4px solid var(--primary-color);
-      padding: 20px;
-      border-radius: 0 8px 8px 0;
-      font-weight: bold;
+      padding: 22px;
+      border-radius: 0 12px 12px 0;
+      font-weight: 600;
       display: flex;
       align-items: flex-start;
-      gap: 12px;
+      gap: 14px;
       color: var(--text-main);
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
     }
 
+    .pain-point-item:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .pain-icon { font-size: 22px; flex-shrink: 0; }
+
+    /* ===== Support examples ===== */
     .example-box {
       background: white;
       border: 1px solid var(--border-color);
-      border-radius: 12px;
-      padding: 30px;
-      margin-bottom: 24px;
+      border-radius: 14px;
+      padding: 28px 30px;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
     }
+
+    .example-box:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
     .example-q {
       display: flex;
+      align-items: center;
       gap: 12px;
-      font-weight: bold;
+      font-weight: 700;
       color: var(--primary-color);
       margin-bottom: 12px;
     }
+
+    .example-q .marker {
+      background: rgba(37, 99, 235, 0.1);
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      flex-shrink: 0;
+    }
+
     .example-a {
       display: flex;
       gap: 12px;
-      color: var(--text-main);
-      padding-left: 28px;
+      color: var(--text-muted);
+      padding-left: 36px;
       font-size: 15px;
     }
 
-    /* 料金シミュレーター用のスタイル */
-    .simulator-container {
-      background: var(--card-bg);
-      border: 2px solid var(--border-color);
-      border-radius: 16px;
-      padding: 40px;
-      box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05);
-    }
-    
-    .simulator-row {
-      margin-bottom: 35px;
-      padding-bottom: 25px;
-      border-bottom: 1px solid var(--border-color);
+    /* ===== Pricing plans ===== */
+    .pricing-lead {
+      text-align: center;
+      color: var(--text-muted);
+      margin: -30px 0 50px 0;
     }
 
-    .slider-header {
+    .plan-finder {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 36px 44px;
+      box-shadow: var(--shadow-md);
+      margin-bottom: 40px;
+    }
+
+    .plan-finder-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 5px;
     }
 
-    .slider-title {
+    .plan-finder-title {
       font-weight: bold;
       font-size: 18px;
       display: flex;
@@ -202,31 +391,15 @@
       gap: 8px;
     }
 
-    .slider-title::before {
-      content: "";
-      display: inline-block;
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-    }
-    .title-text-only::before { background-color: var(--text-only-color); }
-    .title-data-make::before { background-color: var(--data-make-color); }
-
-    .slider-desc {
-      font-size: 13px;
-      color: var(--text-muted);
-      margin: 0 0 15px 0;
-    }
-
-    .count-display {
-      font-size: 28px;
+    .plan-finder-count {
+      font-size: 26px;
       font-weight: 800;
+      color: var(--primary-color);
     }
-    .display-text-only { color: var(--text-only-color); }
-    .display-data-make { color: var(--data-make-color); }
 
     .range-slider {
       -webkit-appearance: none;
+      appearance: none;
       width: 100%;
       height: 8px;
       border-radius: 5px;
@@ -242,16 +415,24 @@
       height: 24px;
       border-radius: 50%;
       cursor: pointer;
-      transition: transform 0.1s;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      transition: transform 0.15s ease;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      background: var(--primary-color);
     }
 
-    #textOnlyRange::-webkit-slider-thumb { background: var(--text-only-color); }
-    #dataMakeRange::-webkit-slider-thumb { background: var(--data-make-color); }
-
-    .range-slider::-webkit-slider-thumb:hover {
-      transform: scale(1.15);
+    .range-slider::-moz-range-thumb {
+      width: 22px;
+      height: 22px;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: transform 0.15s ease;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      background: var(--primary-color);
     }
+
+    .range-slider::-webkit-slider-thumb:hover { transform: scale(1.15); }
+    .range-slider::-moz-range-thumb:hover { transform: scale(1.15); }
 
     .slider-labels {
       display: flex;
@@ -260,84 +441,119 @@
       font-size: 12px;
     }
 
-    .result-box {
-      background: #f8fafc;
-      border-radius: 12px;
-      padding: 30px;
+    .plan-finder-result {
       text-align: center;
-      border: 1px solid var(--border-color);
+      margin: 20px 0 0 0;
+      font-size: 15px;
+      color: var(--text-main);
     }
 
-    .result-price-wrapper {
-      margin: 10px 0;
-    }
-
-    .calc-price {
-      font-size: 48px;
-      font-weight: 800;
+    .plan-finder-result strong {
+      font-size: 20px;
       color: var(--accent-color);
     }
 
-    .calc-price span {
-      font-size: 18px;
-      color: var(--text-main);
-      font-weight: normal;
+    .plan-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 24px;
     }
 
-    .price-breakdown {
+    .plan-card {
+      position: relative;
+      background: var(--card-bg);
+      border: 2px solid var(--border-color);
+      border-radius: 16px;
+      padding: 34px 26px;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.3s ease;
+    }
+
+    .plan-card.active {
+      border-color: var(--primary-color);
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-6px);
+    }
+
+    .plan-badge-ribbon {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--gradient-brand);
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 5px 16px;
+      border-radius: 999px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .plan-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 6px;
+    }
+
+    .plan-range {
       font-size: 14px;
       color: var(--text-muted);
-      margin-bottom: 15px;
+      margin-bottom: 18px;
     }
 
-    .alert-note {
-      background: var(--warning-bg);
-      border: 1px solid #fde68a;
-      color: var(--warning-color);
-      padding: 12px;
-      border-radius: 8px;
-      font-size: 13px;
-      font-weight: bold;
-      margin-top: 15px;
-      display: none;
-      text-align: left;
-    }
-
-    .features-list {
-      text-align: left;
-      max-width: 500px;
-      margin: 25px auto 0 auto;
-      padding: 0;
-      list-style: none;
-      border-top: 1px dashed var(--border-color);
-      padding-top: 20px;
-    }
-
-    .features-list li {
-      margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
+    .plan-price {
+      font-size: 32px;
+      font-weight: 800;
       color: var(--text-main);
-      font-size: 14px;
     }
 
-    .features-list li::before {
+    .plan-price small {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+
+    .plan-price.custom { font-size: 20px; color: var(--primary-color); }
+
+    .plan-features {
+      list-style: none;
+      padding: 0;
+      margin: 22px 0 0 0;
+      text-align: left;
+      font-size: 13.5px;
+      color: var(--text-main);
+    }
+
+    .plan-features li {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      margin-bottom: 10px;
+    }
+
+    .plan-features li::before {
       content: "✓";
       color: var(--primary-color);
       font-weight: bold;
+      flex-shrink: 0;
     }
 
     /* 受託開発案内用の特別枠ボックス */
     .outsource-box {
-      background: #f1f5f9;
+      background: #ffffff;
       border: 1px solid var(--border-color);
+      border-left: 4px solid #f59e0b;
       border-radius: 12px;
       padding: 24px;
-      margin-top: 25px;
+      margin-top: 36px;
       text-align: left;
+      box-shadow: var(--shadow-sm);
     }
-    
+
     .outsource-box h4 {
       margin: 0 0 8px 0;
       color: #0f172a;
@@ -352,52 +568,179 @@
       line-height: 1.5;
     }
 
+    /* ===== Contact ===== */
+    .contact-panel {
+      max-width: 900px;
+      margin: 60px auto;
+      padding: 70px 20px;
+      border-radius: 24px;
+      background: linear-gradient(135deg, #eef2ff, #f8fafc);
+      text-align: center;
+    }
+
+    /* ===== Footer ===== */
     footer {
       text-align: center;
-      padding: 40px;
+      padding: 50px 20px 40px;
       font-size: 14px;
       color: var(--text-muted);
       border-top: 1px solid var(--border-color);
+      background: #ffffff;
+    }
+
+    .footer-operator {
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 6px;
+    }
+
+    /* ===== Floating action button ===== */
+    .floating {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 300;
+    }
+
+    .floating a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: var(--gradient-brand);
+      color: white;
+      font-size: 26px;
+      text-decoration: none;
+      box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.55);
+      animation: pulse 2.4s infinite;
+      transition: transform 0.3s ease;
+    }
+
+    .floating a:hover {
+      transform: scale(1.1) rotate(8deg);
+      animation-play-state: paused;
+    }
+
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.35), 0 10px 25px -5px rgba(37, 99, 235, 0.55); }
+      50% { box-shadow: 0 0 0 12px rgba(37, 99, 235, 0), 0 10px 25px -5px rgba(37, 99, 235, 0.55); }
+    }
+
+    /* ===== Toast ===== */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 24px;
+      max-width: 320px;
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: var(--shadow-lg);
+      transform: translateY(24px);
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 0.4s cubic-bezier(.16,1,.3,1), opacity 0.4s ease;
+      z-index: 299;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .toast-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .toast-header strong { font-size: 14px; color: var(--text-main); }
+
+    .toast p {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin: 0 0 14px 0;
+    }
+
+    .close-btn {
+      background: none;
+      border: none;
+      font-size: 18px;
+      line-height: 1;
+      color: var(--text-muted);
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .close-btn:hover { color: var(--text-main); }
+
+    @media (max-width: 480px) {
+      .toast { left: 16px; right: 16px; max-width: none; }
+      h1 { font-size: 36px; }
+      .plan-finder { padding: 24px; }
     }
   </style>
 </head>
 <body>
 
-<header>
-  <div class="badge">BIM Technical Helpdesk</div>
-  <h1>AsyncBIM</h1>
-  <p class="subtitle">
-    Revitの操作、エラー解決、Dynamoの活用相談まで。<br>
-    BIMの技術的な壁を、**専門的なアドバイス**でスピーディに突破できるよう支援します。
-  </p>
-  <a class="btn" href="https://forms.gle/ohT4uDPEGPSiJmTw5" target="_blank">無料相談を始める</a>
+<nav class="navbar">
+  <div class="nav-inner">
+    <a class="nav-logo" href="#top">BIM<span>ほっとライン</span></a>
+    <div class="nav-links">
+      <a href="#pain-points">お悩み</a>
+      <a href="#workflow">仕組み</a>
+      <a href="#pricing">料金</a>
+      <a href="#contact">お問い合わせ</a>
+    </div>
+    <a class="btn btn-sm" href="https://forms.gle/ohT4uDPEGPSiJmTw5" target="_blank">無料相談</a>
+  </div>
+</nav>
+
+<header id="top">
+  <div class="hero-inner">
+    <div class="badge">BIM Technical Helpdesk</div>
+    <h1>BIMほっとライン</h1>
+    <p class="subtitle">
+      Revitの操作、エラー解決、Dynamoの活用相談まで。<br>
+      BIMの技術的な壁を、<strong>専門的なアドバイス</strong>でスピーディに突破できるよう支援します。
+    </p>
+    <a class="btn" href="https://forms.gle/ohT4uDPEGPSiJmTw5" target="_blank">無料相談を始める</a>
+  </div>
 </header>
 
-<section>
+<section id="pain-points">
+  <span class="kicker">Pain Points</span>
   <h2 class="section-title">実務における「技術的な悩み」を解消</h2>
   <div class="card">
     <p style="text-align:center; color:var(--text-muted); margin-bottom: 30px;">
-      自己解決に何時間もかかってしまう課題に対し、プロが解決の糸口や最適な手順を**助言**します。
+      自己解決に何時間もかかってしまう課題に対し、プロが解決の糸口や最適な手順を<strong>助言</strong>します。
     </p>
     <div class="pain-points">
-      <div class="pain-point-item">Revitの複雑なモデリングやファミリ作成のエラー原因が不明</div>
-      <div class="pain-point-item">Dynamoを活用したいが、適切なノード構成やアプローチが分からない</div>
-      <div class="pain-point-item">IFC連携やAutoCADとのデータ互換における最適な設定を知りたい</div>
-      <div class="pain-point-item">ACCの機能設定や権限運用のベストプラクティスを相談したい</div>
+      <div class="pain-point-item"><span class="pain-icon">⚙️</span>Revitの複雑なモデリングやファミリ作成のエラー原因が不明</div>
+      <div class="pain-point-item"><span class="pain-icon">🔗</span>Dynamoを活用したいが、適切なノード構成やアプローチが分からない</div>
+      <div class="pain-point-item"><span class="pain-icon">📐</span>IFC連携やAutoCADとのデータ互換における最適な設定を知りたい</div>
+      <div class="pain-point-item"><span class="pain-icon">🔐</span>ACCの機能設定や権限運用のベストプラクティスを相談したい</div>
     </div>
   </div>
 </section>
 
-<section>
-  <h2 class="section-title">Tools & Workflow</h2>
+<section id="workflow">
+  <span class="kicker">Tools & Workflow</span>
+  <h2 class="section-title">使い慣れたツールでシンプルに</h2>
   <div class="grid-2">
     <div class="card">
-      <span class="tool-tag tag-slack">Slack</span>
+      <div class="tool-icon slack">💬</div>
       <h3>非同期チャット相談</h3>
-      <p>日常の疑問やエラーのスクリーンショットをSlackに投げるだけ。プロが状況を分析し、**「どう解決すべきか」のアドバイス**を24時間以内に回答します。</p>
+      <p>日常の疑問やエラーのスクリーンショットをSlackに投げるだけ。プロが状況を分析し、<strong>「どう解決すべきか」のアドバイス</strong>を24時間以内に回答します。</p>
     </div>
     <div class="card">
-      <span class="tool-tag tag-notion">Notion</span>
+      <div class="tool-icon notion">📝</div>
       <h3>技術ナレッジの蓄積</h3>
       <p>過去のアドバイスはNotionへ整理・蓄積。社内の誰もが参照できる「BIMナレッジ集」として活用でき、チーム全体の自走力を高めます。</p>
     </div>
@@ -405,13 +748,14 @@
 </section>
 
 <section style="background-color: #f1f5f9; border-radius: 20px; padding: 60px 20px;">
-  <h2 class="section-title">Support Examples</h2>
+  <span class="kicker">Support Examples</span>
+  <h2 class="section-title">サポート事例</h2>
   <p style="text-align:center; color:var(--text-muted); margin-top: -30px; margin-bottom: 40px;">※実務作業自体はお客様、解決のガイドを私たちが担当します</p>
-  
+
   <div style="max-width: 800px; margin: auto;">
     <div class="example-box">
       <div class="example-q">
-        <span>Q.</span>
+        <span class="marker">Q</span>
         <span>Dynamoで「Null」が含まれているせいで後続のノードがエラーになります。</span>
       </div>
       <div class="example-a">
@@ -422,7 +766,7 @@
 
     <div class="example-box">
       <div class="example-q">
-        <span>Q.</span>
+        <span class="marker">Q</span>
         <span>Revitで特定のファミリだけ集計表に表示されません。</span>
       </div>
       <div class="example-a">
@@ -433,7 +777,7 @@
 
     <div class="example-box">
       <div class="example-q">
-        <span>Q.</span>
+        <span class="marker">Q</span>
         <span>ACCで協力会社に特定のフォルダだけ見せたい。</span>
       </div>
       <div class="example-a">
@@ -444,76 +788,87 @@
   </div>
 </section>
 
-<!-- 料金シミュレーターセクション -->
-<section>
-  <h2 class="section-title">Flexible Pricing</h2>
-  <p style="text-align:center; color:var(--text-muted); margin-top: -30px; margin-bottom: 40px;">
-    固定プランはありません。毎月の「回答タイプ別の質問数」に応じて料金がクリアに動く従量システムです。<br>
-    本サービスは**「質疑・回答（アドバイザリー）」**であるため、実際の作業はお客様自身で行っていただきます。
+<!-- 料金プランセクション -->
+<section id="pricing">
+  <span class="kicker">Pricing</span>
+  <h2 class="section-title">利用人数に応じた、わかりやすい料金プラン</h2>
+  <p class="pricing-lead">
+    質問数を都度カウントする必要はありません。<strong>貴社の利用人数</strong>に応じて月額料金が決まる、シンプルな料金体系です。<br>
+    本サービスは<strong>「質疑・回答（アドバイザリー）」</strong>であるため、実際の作業はお客様自身で行っていただきます。
   </p>
 
-  <div class="simulator-container">
-    
-    <!-- スライダー1: テキスト回答 -->
-    <div class="simulator-row">
-      <div class="slider-header">
-        <span class="slider-title title-text-only">A. テキスト回答のみ</span>
-        <div class="count-display display-text-only"><span id="textOnlyOutput">3</span> 件</div>
-      </div>
-      <p class="slider-desc">簡易な操作エラーの解決、設定方法、仕様確認など（通常枠内: ¥5,000 / 件）</p>
-      <input type="range" id="textOnlyRange" class="range-slider" min="0" max="25" value="3">
-      <div class="slider-labels">
-        <span>0件</span>
-        <span>20件 (通常枠)</span>
-        <span>25件 (超過枠: ¥10,000/件)</span>
-      </div>
+  <!-- 人数からプランを探す -->
+  <div class="plan-finder">
+    <div class="plan-finder-header">
+      <span class="plan-finder-title">👥 貴社の利用人数は？</span>
+      <div class="plan-finder-count"><span id="userCountOutput">5名</span></div>
     </div>
-
-    <!-- スライダー2: 実装手順・サンプル提示 -->
-    <div class="simulator-row">
-      <div class="slider-header">
-        <span class="slider-title title-data-make">B. 詳細手順書 ＋ 検証用サンプル提示</span>
-        <div class="count-display display-data-make"><span id="dataMakeOutput">1</span> 件</div>
-      </div>
-      <p class="slider-desc">ファミリ作成のロジック解説、Dynamoノード構成の図解提示など（通常枠内: ¥15,000 / 件）<br>
-      <span style="color:var(--accent-color); font-size:12px; font-weight:bold;">※スクリプト完成品やファミリデータの納品、実データの修正などの「実作業」は含みません。</span></p>
-      <input type="range" id="dataMakeRange" class="range-slider" min="0" max="25" value="1">
-      <div class="slider-labels">
-        <span>0件</span>
-        <span>20件 (通常枠)</span>
-        <span>25件 (超過枠: ¥25,000/件)</span>
-      </div>
+    <input type="range" id="userCountRange" class="range-slider" min="1" max="26" value="5">
+    <div class="slider-labels">
+      <span>1名</span>
+      <span>10名</span>
+      <span>25名</span>
+      <span>26名〜</span>
     </div>
+    <p class="plan-finder-result" id="planFinderResult"></p>
+  </div>
 
-    <!-- 計算結果ボックス -->
-    <div class="result-box">
-      <p style="font-weight: bold; margin: 0; color: var(--text-muted);">推定月額費用</p>
-      <div class="result-price-wrapper">
-        <span class="calc-price">¥<span id="priceOutput">40,000</span></span><span> / 月</span>
-      </div>
-      <div id="priceBreakdown" class="price-breakdown">内訳: 基本料 ¥10,000 + A枠 ¥15,000 + B枠 ¥15,000</div>
-      
-      <div id="alertNote" class="alert-note"></div>
-      
-      <ul class="features-list">
-        <li>相談時にチャット(Slack)上で希望の回答タイプ「A」または「B」をご指定いただけます</li>
-        <li>過去の全ての回答は、社内で共有可能なNotion技術ナレッジへ綺麗に蓄積</li>
-        <li>合計の月間質問数が20件を超えたタイプは、高負荷ペナルティとして単価が上がります</li>
+  <!-- プラン一覧 -->
+  <div class="plan-grid">
+    <div class="plan-card" data-plan="small">
+      <div class="plan-name">Small</div>
+      <div class="plan-range">1〜3名</div>
+      <div class="plan-price">¥30,000<small> / 月</small></div>
+      <ul class="plan-features">
+        <li>Slackでの質疑応答し放題</li>
+        <li>Notionへの知見蓄積</li>
+        <li>通常回答: 24時間以内</li>
       </ul>
-
-      <!-- 【追加】受託開発への誘導枠 -->
-      <div class="outsource-box">
-        <h4>💡 実際の作業（丸投げ）を希望される場合</h4>
-        <p>
-          「自社で対応するリソースがない」「Dynamoスクリプトを代わりに組んでほしい」「実プロジェクトのテンプレートを修正してほしい」といった実作業につきましては、**別途個別見積もりにて受託開発・制作が可能**です。お気軽にお問い合わせフォームよりご相談ください。
-        </p>
-      </div>
-
     </div>
+    <div class="plan-card" data-plan="regular">
+      <div class="plan-badge-ribbon">人気</div>
+      <div class="plan-name">Regular</div>
+      <div class="plan-range">4〜10名</div>
+      <div class="plan-price">¥60,000<small> / 月</small></div>
+      <ul class="plan-features">
+        <li>Slackでの質疑応答し放題</li>
+        <li>Notionへの知見蓄積</li>
+        <li>複数プロジェクト・チャンネルに対応</li>
+        <li>通常回答: 24時間以内</li>
+      </ul>
+    </div>
+    <div class="plan-card" data-plan="business">
+      <div class="plan-name">Business</div>
+      <div class="plan-range">11〜25名</div>
+      <div class="plan-price">¥120,000<small> / 月</small></div>
+      <ul class="plan-features">
+        <li>Regularプランの内容すべて</li>
+        <li>優先回答: 12時間以内</li>
+        <li>専任担当者によるサポート</li>
+      </ul>
+    </div>
+    <div class="plan-card" data-plan="enterprise">
+      <div class="plan-name">Enterprise</div>
+      <div class="plan-range">26名以上</div>
+      <div class="plan-price custom">要問い合わせ</div>
+      <ul class="plan-features">
+        <li>Businessプランの内容すべて</li>
+        <li>専属サポートチーム</li>
+        <li>導入支援・個別SLAのご相談</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 受託開発への誘導枠 -->
+  <div class="outsource-box">
+    <h4>💡 実際の作業（丸投げ）を希望される場合</h4>
+    <p>
+      「自社で対応するリソースがない」「Dynamoスクリプトを代わりに組んでほしい」「実プロジェクトのテンプレートを修正してほしい」といった実作業につきましては、<strong>別途個別見積もりにて受託開発・制作が可能</strong>です。お気軽にお問い合わせフォームよりご相談ください。
+    </p>
   </div>
 </section>
 
-<section style="text-align:center" id="contact">
+<section id="contact" class="contact-panel">
   <h2 class="section-title">まずは技術的な課題をお聞かせください</h2>
   <a class="btn" href="https://forms.gle/ohT4uDPEGPSiJmTw5" target="_blank">お問い合わせフォームへ</a>
   <p style="margin-top:20px; color:var(--text-muted);">✉️ dx.bim.support@gmail.com</p>
@@ -521,7 +876,7 @@
 
 <footer>
   <div class="footer-operator">運営: AVIZ</div>
-  <div>© 2026 AsyncBIM. All rights reserved.</div>
+  <div>© 2026 BIMほっとライン. All rights reserved.</div>
 </footer>
 
 <div class="floating">
@@ -531,83 +886,62 @@
 <div class="toast" id="toast">
   <div class="toast-header">
     <strong>BIMの技術的疑問、プロが回答します</strong>
-    <button class="close-btn" onclick="closeToast()">×</button>
+    <button class="close-btn" onclick="closeToast()" aria-label="閉じる">×</button>
   </div>
   <p>Slackでの質疑応答、Notionでの知見蓄積。お客様の自走を全力でサポートします。</p>
-  <a class="btn" style="padding: 8px 16px; font-size: 14px; width: 100%; box-sizing: border-box; text-align: center;" href="https://forms.gle/ohT4uDPEGPSiJmTw5" target="_blank">お問合せ</a>
+  <a class="btn" style="padding: 8px 16px; font-size: 14px; width: 100%; box-sizing: border-box; text-align: center; justify-content: center;" href="https://forms.gle/ohT4uDPEGPSiJmTw5" target="_blank">お問合せ</a>
 </div>
 
 <script>
   // トースト表示ロジック
-  setTimeout(function(){
-    document.getElementById("toast").style.display = "block";
+  const toast = document.getElementById("toast");
+
+  setTimeout(function () {
+    toast.classList.add("show");
   }, 3000);
 
-  function closeToast(){
-    document.getElementById("toast").style.display = "none";
+  function closeToast() {
+    toast.classList.remove("show");
   }
 
-  // 回答タイプ別の明快な従量課金システム
-  const textSlider = document.getElementById("textOnlyRange");
-  const dataSlider = document.getElementById("dataMakeRange");
-  
-  const textOutput = document.getElementById("textOnlyOutput");
-  const dataOutput = document.getElementById("dataMakeOutput");
-  const priceOutput = document.getElementById("priceOutput");
-  const priceBreakdown = document.getElementById("priceBreakdown");
-  const alertNote = document.getElementById("alertNote");
+  // 利用人数に応じたプラン判定
+  const PLANS = [
+    { id: "small", name: "Small", min: 1, max: 3, price: 30000 },
+    { id: "regular", name: "Regular", min: 4, max: 10, price: 60000 },
+    { id: "business", name: "Business", min: 11, max: 25, price: 120000 },
+    { id: "enterprise", name: "Enterprise", min: 26, max: Infinity, price: null },
+  ];
 
-  function updateSimulator() {
-    const qtyText = parseInt(textSlider.value);
-    const qtyData = parseInt(dataSlider.value);
-    
-    textOutput.innerText = qtyText;
-    dataOutput.innerText = qtyData;
+  const countSlider = document.getElementById("userCountRange");
+  const countOutput = document.getElementById("userCountOutput");
+  const planFinderResult = document.getElementById("planFinderResult");
+  const planCards = document.querySelectorAll(".plan-card");
 
-    const basePrice = 10000; // 基本料金
-    
-    // A: テキスト回答の料金計算（20件まで¥5,000、以降¥10,000）
-    let textCost = 0;
-    if (qtyText <= 20) {
-      textCost = qtyText * 5000;
-    } else {
-      textCost = (20 * 5000) + ((qtyText - 20) * 10000);
-    }
+  function findPlan(count) {
+    return PLANS.find(function (plan) {
+      return count >= plan.min && count <= plan.max;
+    });
+  }
 
-    // B: サンプル提示の料金計算（20件まで¥15,000、以降¥25,000）
-    let dataCost = 0;
-    if (qtyData <= 20) {
-      dataCost = qtyData * 15000;
-    } else {
-      dataCost = (20 * 15000) + ((qtyData - 20) * 25000);
-    }
+  function updatePlanFinder() {
+    const count = parseInt(countSlider.value);
+    countOutput.innerText = count >= 26 ? "26名〜" : count + "名";
 
-    // 合計
-    const total = basePrice + textCost + dataCost;
+    const plan = findPlan(count);
+    planFinderResult.innerHTML = plan.price
+      ? `貴社の月額目安: <strong>¥${plan.price.toLocaleString()}</strong>（${plan.name}プラン）`
+      : `<strong>${plan.name}プラン</strong>が該当します。個別お見積りのためお問い合わせください`;
 
-    // 画面反映
-    priceOutput.innerText = total.toLocaleString();
-    priceBreakdown.innerText = `内訳: 基本料 ¥${basePrice.toLocaleString()} + A枠 ¥${textCost.toLocaleString()} + B枠 ¥${dataCost.toLocaleString()}`;
-
-    // 20件超過の警告表示コントロール
-    let warnings = [];
-    if (qtyText > 20) warnings.push(`「A.テキスト回答」が通常枠を超過（+ ${qtyText - 20}件分は単価¥10,000適用）`);
-    if (qtyData > 20) warnings.push(`「B.詳細手順・サンプル」が通常枠を超過（+ ${qtyData - 20}件分は単価¥25,000適用）`);
-
-    if (warnings.length > 0) {
-      alertNote.innerHTML = "⚠️ 高負荷警告:<br>" + warnings.join("<br>") + "<br>※超過分はストッパーなしで加算されます。";
-      alertNote.style.display = "block";
-    } else {
-      alertNote.style.display = "none";
-    }
+    planCards.forEach(function (card) {
+      card.classList.toggle("active", card.dataset.plan === plan.id);
+    });
   }
 
   // イベントリスナー
-  textSlider.addEventListener("input", updateSimulator);
-  dataSlider.addEventListener("input", updateSimulator);
-  
+  countSlider.addEventListener("input", updatePlanFinder);
+
   // 初期実行
-  updateSimulator();
+  updatePlanFinder();
 </script>
 
 </body>
