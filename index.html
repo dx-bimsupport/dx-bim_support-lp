@@ -360,29 +360,30 @@
       font-size: 15px;
     }
 
-    /* ===== Pricing simulator ===== */
-    .simulator-container {
+    /* ===== Pricing plans ===== */
+    .pricing-lead {
+      text-align: center;
+      color: var(--text-muted);
+      margin: -30px 0 50px 0;
+    }
+
+    .plan-finder {
       background: var(--card-bg);
       border: 1px solid var(--border-color);
       border-radius: 20px;
-      padding: 44px;
-      box-shadow: var(--shadow-lg);
+      padding: 36px 44px;
+      box-shadow: var(--shadow-md);
+      margin-bottom: 40px;
     }
 
-    .simulator-row {
-      margin-bottom: 35px;
-      padding-bottom: 25px;
-      border-bottom: 1px solid var(--border-color);
-    }
-
-    .slider-header {
+    .plan-finder-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 5px;
     }
 
-    .slider-title {
+    .plan-finder-title {
       font-weight: bold;
       font-size: 18px;
       display: flex;
@@ -390,28 +391,11 @@
       gap: 8px;
     }
 
-    .slider-title::before {
-      content: "";
-      display: inline-block;
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-    }
-    .title-text-only::before { background-color: var(--text-only-color); }
-    .title-data-make::before { background-color: var(--data-make-color); }
-
-    .slider-desc {
-      font-size: 13px;
-      color: var(--text-muted);
-      margin: 0 0 15px 0;
-    }
-
-    .count-display {
-      font-size: 28px;
+    .plan-finder-count {
+      font-size: 26px;
       font-weight: 800;
+      color: var(--primary-color);
     }
-    .display-text-only { color: var(--text-only-color); }
-    .display-data-make { color: var(--data-make-color); }
 
     .range-slider {
       -webkit-appearance: none;
@@ -433,6 +417,7 @@
       cursor: pointer;
       transition: transform 0.15s ease;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      background: var(--primary-color);
     }
 
     .range-slider::-moz-range-thumb {
@@ -443,10 +428,8 @@
       cursor: pointer;
       transition: transform 0.15s ease;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      background: var(--primary-color);
     }
-
-    #textOnlyRange::-webkit-slider-thumb, #textOnlyRange::-moz-range-thumb { background: var(--text-only-color); }
-    #dataMakeRange::-webkit-slider-thumb, #dataMakeRange::-moz-range-thumb { background: var(--data-make-color); }
 
     .range-slider::-webkit-slider-thumb:hover { transform: scale(1.15); }
     .range-slider::-moz-range-thumb:hover { transform: scale(1.15); }
@@ -458,75 +441,105 @@
       font-size: 12px;
     }
 
-    .result-box {
-      background: linear-gradient(135deg, #f8fafc, #eef2ff);
-      border-radius: 16px;
-      padding: 36px;
+    .plan-finder-result {
       text-align: center;
-      border: 1px solid var(--border-color);
-    }
-
-    .result-price-wrapper { margin: 10px 0; }
-
-    .calc-price {
-      font-size: 48px;
-      font-weight: 800;
-      background: linear-gradient(135deg, var(--accent-color), #f97316);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-
-    .calc-price span {
-      font-size: 18px;
+      margin: 20px 0 0 0;
+      font-size: 15px;
       color: var(--text-main);
-      font-weight: normal;
-      -webkit-background-clip: initial;
-      background-clip: initial;
     }
 
-    .price-breakdown {
+    .plan-finder-result strong {
+      font-size: 20px;
+      color: var(--accent-color);
+    }
+
+    .plan-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 24px;
+    }
+
+    .plan-card {
+      position: relative;
+      background: var(--card-bg);
+      border: 2px solid var(--border-color);
+      border-radius: 16px;
+      padding: 34px 26px;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.3s ease;
+    }
+
+    .plan-card.active {
+      border-color: var(--primary-color);
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-6px);
+    }
+
+    .plan-badge-ribbon {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--gradient-brand);
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 5px 16px;
+      border-radius: 999px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .plan-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 6px;
+    }
+
+    .plan-range {
       font-size: 14px;
       color: var(--text-muted);
-      margin-bottom: 15px;
+      margin-bottom: 18px;
     }
 
-    .alert-note {
-      background: var(--warning-bg);
-      border: 1px solid #fde68a;
-      color: var(--warning-color);
-      padding: 12px;
-      border-radius: 8px;
-      font-size: 13px;
-      font-weight: bold;
-      margin-top: 15px;
-      display: none;
-      text-align: left;
-    }
-
-    .features-list {
-      text-align: left;
-      max-width: 500px;
-      margin: 25px auto 0 auto;
-      padding: 0;
-      list-style: none;
-      border-top: 1px dashed var(--border-color);
-      padding-top: 20px;
-    }
-
-    .features-list li {
-      margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
+    .plan-price {
+      font-size: 32px;
+      font-weight: 800;
       color: var(--text-main);
-      font-size: 14px;
     }
 
-    .features-list li::before {
+    .plan-price small {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+
+    .plan-price.custom { font-size: 20px; color: var(--primary-color); }
+
+    .plan-features {
+      list-style: none;
+      padding: 0;
+      margin: 22px 0 0 0;
+      text-align: left;
+      font-size: 13.5px;
+      color: var(--text-main);
+    }
+
+    .plan-features li {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      margin-bottom: 10px;
+    }
+
+    .plan-features li::before {
       content: "✓";
       color: var(--primary-color);
       font-weight: bold;
+      flex-shrink: 0;
     }
 
     /* 受託開発案内用の特別枠ボックス */
@@ -536,7 +549,7 @@
       border-left: 4px solid #f59e0b;
       border-radius: 12px;
       padding: 24px;
-      margin-top: 28px;
+      margin-top: 36px;
       text-align: left;
       box-shadow: var(--shadow-sm);
     }
@@ -670,7 +683,7 @@
     @media (max-width: 480px) {
       .toast { left: 16px; right: 16px; max-width: none; }
       h1 { font-size: 36px; }
-      .simulator-container { padding: 28px; }
+      .plan-finder { padding: 24px; }
     }
   </style>
 </head>
@@ -775,73 +788,83 @@
   </div>
 </section>
 
-<!-- 料金シミュレーターセクション -->
+<!-- 料金プランセクション -->
 <section id="pricing">
-  <span class="kicker">Flexible Pricing</span>
-  <h2 class="section-title">料金シミュレーター</h2>
-  <p style="text-align:center; color:var(--text-muted); margin-top: -30px; margin-bottom: 40px;">
-    固定プランはありません。毎月の「回答タイプ別の質問数」に応じて料金がクリアに動く従量システムです。<br>
+  <span class="kicker">Pricing</span>
+  <h2 class="section-title">利用人数に応じた、わかりやすい料金プラン</h2>
+  <p class="pricing-lead">
+    質問数を都度カウントする必要はありません。<strong>貴社の利用人数</strong>に応じて月額料金が決まる、シンプルな料金体系です。<br>
     本サービスは<strong>「質疑・回答（アドバイザリー）」</strong>であるため、実際の作業はお客様自身で行っていただきます。
   </p>
 
-  <div class="simulator-container">
-
-    <!-- スライダー1: テキスト回答 -->
-    <div class="simulator-row">
-      <div class="slider-header">
-        <span class="slider-title title-text-only">A. テキスト回答のみ</span>
-        <div class="count-display display-text-only"><span id="textOnlyOutput">3</span> 件</div>
-      </div>
-      <p class="slider-desc">簡易な操作エラーの解決、設定方法、仕様確認など（通常枠内: ¥5,000 / 件）</p>
-      <input type="range" id="textOnlyRange" class="range-slider" min="0" max="25" value="3">
-      <div class="slider-labels">
-        <span>0件</span>
-        <span>20件 (通常枠)</span>
-        <span>25件 (超過枠: ¥10,000/件)</span>
-      </div>
+  <!-- 人数からプランを探す -->
+  <div class="plan-finder">
+    <div class="plan-finder-header">
+      <span class="plan-finder-title">👥 貴社の利用人数は？</span>
+      <div class="plan-finder-count"><span id="userCountOutput">5名</span></div>
     </div>
-
-    <!-- スライダー2: 実装手順・サンプル提示 -->
-    <div class="simulator-row">
-      <div class="slider-header">
-        <span class="slider-title title-data-make">B. 詳細手順書 ＋ 検証用サンプル提示</span>
-        <div class="count-display display-data-make"><span id="dataMakeOutput">1</span> 件</div>
-      </div>
-      <p class="slider-desc">ファミリ作成のロジック解説、Dynamoノード構成の図解提示など（通常枠内: ¥15,000 / 件）<br>
-      <span style="color:var(--accent-color); font-size:12px; font-weight:bold;">※スクリプト完成品やファミリデータの納品、実データの修正などの「実作業」は含みません。</span></p>
-      <input type="range" id="dataMakeRange" class="range-slider" min="0" max="25" value="1">
-      <div class="slider-labels">
-        <span>0件</span>
-        <span>20件 (通常枠)</span>
-        <span>25件 (超過枠: ¥25,000/件)</span>
-      </div>
+    <input type="range" id="userCountRange" class="range-slider" min="1" max="26" value="5">
+    <div class="slider-labels">
+      <span>1名</span>
+      <span>10名</span>
+      <span>25名</span>
+      <span>26名〜</span>
     </div>
+    <p class="plan-finder-result" id="planFinderResult"></p>
+  </div>
 
-    <!-- 計算結果ボックス -->
-    <div class="result-box">
-      <p style="font-weight: bold; margin: 0; color: var(--text-muted);">推定月額費用</p>
-      <div class="result-price-wrapper">
-        <span class="calc-price">¥<span id="priceOutput">40,000</span></span><span> / 月</span>
-      </div>
-      <div id="priceBreakdown" class="price-breakdown">内訳: 基本料 ¥10,000 + A枠 ¥15,000 + B枠 ¥15,000</div>
-
-      <div id="alertNote" class="alert-note"></div>
-
-      <ul class="features-list">
-        <li>相談時にチャット(Slack)上で希望の回答タイプ「A」または「B」をご指定いただけます</li>
-        <li>過去の全ての回答は、社内で共有可能なNotion技術ナレッジへ綺麗に蓄積</li>
-        <li>合計の月間質問数が20件を超えたタイプは、高負荷ペナルティとして単価が上がります</li>
+  <!-- プラン一覧 -->
+  <div class="plan-grid">
+    <div class="plan-card" data-plan="small">
+      <div class="plan-name">Small</div>
+      <div class="plan-range">1〜3名</div>
+      <div class="plan-price">¥30,000<small> / 月</small></div>
+      <ul class="plan-features">
+        <li>Slackでの質疑応答し放題</li>
+        <li>Notionへの知見蓄積</li>
+        <li>通常回答: 24時間以内</li>
       </ul>
-
-      <!-- 受託開発への誘導枠 -->
-      <div class="outsource-box">
-        <h4>💡 実際の作業（丸投げ）を希望される場合</h4>
-        <p>
-          「自社で対応するリソースがない」「Dynamoスクリプトを代わりに組んでほしい」「実プロジェクトのテンプレートを修正してほしい」といった実作業につきましては、<strong>別途個別見積もりにて受託開発・制作が可能</strong>です。お気軽にお問い合わせフォームよりご相談ください。
-        </p>
-      </div>
-
     </div>
+    <div class="plan-card" data-plan="regular">
+      <div class="plan-badge-ribbon">人気</div>
+      <div class="plan-name">Regular</div>
+      <div class="plan-range">4〜10名</div>
+      <div class="plan-price">¥60,000<small> / 月</small></div>
+      <ul class="plan-features">
+        <li>Slackでの質疑応答し放題</li>
+        <li>Notionへの知見蓄積</li>
+        <li>複数プロジェクト・チャンネルに対応</li>
+        <li>通常回答: 24時間以内</li>
+      </ul>
+    </div>
+    <div class="plan-card" data-plan="business">
+      <div class="plan-name">Business</div>
+      <div class="plan-range">11〜25名</div>
+      <div class="plan-price">¥120,000<small> / 月</small></div>
+      <ul class="plan-features">
+        <li>Regularプランの内容すべて</li>
+        <li>優先回答: 12時間以内</li>
+        <li>専任担当者によるサポート</li>
+      </ul>
+    </div>
+    <div class="plan-card" data-plan="enterprise">
+      <div class="plan-name">Enterprise</div>
+      <div class="plan-range">26名以上</div>
+      <div class="plan-price custom">要問い合わせ</div>
+      <ul class="plan-features">
+        <li>Businessプランの内容すべて</li>
+        <li>専属サポートチーム</li>
+        <li>導入支援・個別SLAのご相談</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 受託開発への誘導枠 -->
+  <div class="outsource-box">
+    <h4>💡 実際の作業（丸投げ）を希望される場合</h4>
+    <p>
+      「自社で対応するリソースがない」「Dynamoスクリプトを代わりに組んでほしい」「実プロジェクトのテンプレートを修正してほしい」といった実作業につきましては、<strong>別途個別見積もりにて受託開発・制作が可能</strong>です。お気軽にお問い合わせフォームよりご相談ください。
+    </p>
   </div>
 </section>
 
@@ -881,67 +904,44 @@
     toast.classList.remove("show");
   }
 
-  // 回答タイプ別の明快な従量課金システム
-  const textSlider = document.getElementById("textOnlyRange");
-  const dataSlider = document.getElementById("dataMakeRange");
+  // 利用人数に応じたプラン判定
+  const PLANS = [
+    { id: "small", name: "Small", min: 1, max: 3, price: 30000 },
+    { id: "regular", name: "Regular", min: 4, max: 10, price: 60000 },
+    { id: "business", name: "Business", min: 11, max: 25, price: 120000 },
+    { id: "enterprise", name: "Enterprise", min: 26, max: Infinity, price: null },
+  ];
 
-  const textOutput = document.getElementById("textOnlyOutput");
-  const dataOutput = document.getElementById("dataMakeOutput");
-  const priceOutput = document.getElementById("priceOutput");
-  const priceBreakdown = document.getElementById("priceBreakdown");
-  const alertNote = document.getElementById("alertNote");
+  const countSlider = document.getElementById("userCountRange");
+  const countOutput = document.getElementById("userCountOutput");
+  const planFinderResult = document.getElementById("planFinderResult");
+  const planCards = document.querySelectorAll(".plan-card");
 
-  function updateSimulator() {
-    const qtyText = parseInt(textSlider.value);
-    const qtyData = parseInt(dataSlider.value);
+  function findPlan(count) {
+    return PLANS.find(function (plan) {
+      return count >= plan.min && count <= plan.max;
+    });
+  }
 
-    textOutput.innerText = qtyText;
-    dataOutput.innerText = qtyData;
+  function updatePlanFinder() {
+    const count = parseInt(countSlider.value);
+    countOutput.innerText = count >= 26 ? "26名〜" : count + "名";
 
-    const basePrice = 10000; // 基本料金
+    const plan = findPlan(count);
+    planFinderResult.innerHTML = plan.price
+      ? `貴社の月額目安: <strong>¥${plan.price.toLocaleString()}</strong>（${plan.name}プラン）`
+      : `<strong>${plan.name}プラン</strong>が該当します。個別お見積りのためお問い合わせください`;
 
-    // A: テキスト回答の料金計算（20件まで¥5,000、以降¥10,000）
-    let textCost = 0;
-    if (qtyText <= 20) {
-      textCost = qtyText * 5000;
-    } else {
-      textCost = (20 * 5000) + ((qtyText - 20) * 10000);
-    }
-
-    // B: サンプル提示の料金計算（20件まで¥15,000、以降¥25,000）
-    let dataCost = 0;
-    if (qtyData <= 20) {
-      dataCost = qtyData * 15000;
-    } else {
-      dataCost = (20 * 15000) + ((qtyData - 20) * 25000);
-    }
-
-    // 合計
-    const total = basePrice + textCost + dataCost;
-
-    // 画面反映
-    priceOutput.innerText = total.toLocaleString();
-    priceBreakdown.innerText = `内訳: 基本料 ¥${basePrice.toLocaleString()} + A枠 ¥${textCost.toLocaleString()} + B枠 ¥${dataCost.toLocaleString()}`;
-
-    // 20件超過の警告表示コントロール
-    let warnings = [];
-    if (qtyText > 20) warnings.push(`「A.テキスト回答」が通常枠を超過（+ ${qtyText - 20}件分は単価¥10,000適用）`);
-    if (qtyData > 20) warnings.push(`「B.詳細手順・サンプル」が通常枠を超過（+ ${qtyData - 20}件分は単価¥25,000適用）`);
-
-    if (warnings.length > 0) {
-      alertNote.innerHTML = "⚠️ 高負荷警告:<br>" + warnings.join("<br>") + "<br>※超過分はストッパーなしで加算されます。";
-      alertNote.style.display = "block";
-    } else {
-      alertNote.style.display = "none";
-    }
+    planCards.forEach(function (card) {
+      card.classList.toggle("active", card.dataset.plan === plan.id);
+    });
   }
 
   // イベントリスナー
-  textSlider.addEventListener("input", updateSimulator);
-  dataSlider.addEventListener("input", updateSimulator);
+  countSlider.addEventListener("input", updatePlanFinder);
 
   // 初期実行
-  updateSimulator();
+  updatePlanFinder();
 </script>
 
 </body>
